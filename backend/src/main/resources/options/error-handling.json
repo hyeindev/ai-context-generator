@@ -1,0 +1,104 @@
+{
+  "id": "errorHandling",
+  "title": "예외 처리 설정",
+  "description": "에러 코드 체계, 예외 계층, 응답 포맷을 설정합니다.",
+  "options": [
+    {
+      "id": "exceptionHierarchy",
+      "label": "예외 계층 구조",
+      "type": "select",
+      "required": true,
+      "values": [
+        {
+          "id": "business-technical",
+          "label": "비즈니스/기술 분리",
+          "description": "BusinessException, TechnicalException 분리"
+        },
+        {
+          "id": "domain-based",
+          "label": "도메인별 분리",
+          "description": "UserException, OrderException 등 도메인별"
+        },
+        {
+          "id": "single-base",
+          "label": "단일 기반 클래스",
+          "description": "하나의 CustomException에서 에러코드로 구분"
+        },
+        {
+          "id": "standard-only",
+          "label": "표준 예외만 사용",
+          "description": "IllegalArgumentException 등 표준 예외"
+        }
+      ]
+    },
+    {
+      "id": "errorCodePattern",
+      "label": "에러 코드 패턴",
+      "type": "select",
+      "required": false,
+      "values": [
+        {
+          "id": "domain-number",
+          "label": "도메인_번호",
+          "description": "USER_001, ORDER_002 형태"
+        },
+        {
+          "id": "http-style",
+          "label": "HTTP 스타일",
+          "description": "4001, 4002, 5001 형태"
+        },
+        {
+          "id": "enum-only",
+          "label": "Enum 이름만",
+          "description": "USER_NOT_FOUND, INVALID_PASSWORD"
+        }
+      ]
+    },
+    {
+      "id": "errorResponseFormat",
+      "label": "에러 응답 포맷",
+      "type": "select",
+      "required": true,
+      "values": [
+        {
+          "id": "rfc7807",
+          "label": "RFC 7807 Problem Detail",
+          "description": "표준 에러 응답 포맷 (type, title, status, detail)"
+        },
+        {
+          "id": "custom-simple",
+          "label": "커스텀 단순형",
+          "description": "{ code, message }"
+        },
+        {
+          "id": "custom-detailed",
+          "label": "커스텀 상세형",
+          "description": "{ code, message, data, timestamp }"
+        }
+      ]
+    },
+    {
+      "id": "exceptionLogging",
+      "label": "예외 로깅 정책",
+      "type": "select",
+      "required": false,
+      "values": [
+        {
+          "id": "full-stacktrace",
+          "label": "전체 스택트레이스",
+          "description": "모든 예외에 전체 스택트레이스"
+        },
+        {
+          "id": "business-warn-tech-error",
+          "label": "비즈니스 WARN / 기술 ERROR",
+          "description": "비즈니스 예외는 WARN, 기술 예외는 ERROR"
+        },
+        {
+          "id": "minimal",
+          "label": "최소 로깅",
+          "description": "메시지만, 스택트레이스 생략"
+        }
+      ]
+    }
+  ]
+}

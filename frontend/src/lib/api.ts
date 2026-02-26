@@ -1,4 +1,4 @@
-import { OptionData, GenerateRequest, GenerateResponse } from "@/types";
+import { OptionData, GenerateRequest, GenerateResponse, CategoriesData, PresetsData } from "@/types";
 
 const API_BASE = "http://localhost:8080/api";
 
@@ -20,6 +20,28 @@ export async function fetchOption(optionId: string): Promise<OptionData> {
   const response = await fetch(`${API_BASE}/options/${optionId}`);
   if (!response.ok) {
     throw new Error("옵션 로드 실패");
+  }
+  return response.json();
+}
+
+/**
+ * 카테고리 정보 조회
+ */
+export async function fetchCategories(): Promise<CategoriesData> {
+  const response = await fetch(`${API_BASE}/options/categories`);
+  if (!response.ok) {
+    throw new Error("카테고리 로드 실패");
+  }
+  return response.json();
+}
+
+/**
+ * 프리셋 목록 조회
+ */
+export async function fetchPresets(): Promise<PresetsData> {
+  const response = await fetch(`${API_BASE}/options/presets`);
+  if (!response.ok) {
+    throw new Error("프리셋 로드 실패");
   }
   return response.json();
 }

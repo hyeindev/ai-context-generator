@@ -54,3 +54,35 @@ export interface GenerateRequest {
 export interface GenerateResponse {
   files: GeneratedFile[];
 }
+
+/** 카테고리 항목 타입 */
+export interface CategoryItem {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+  order?: number;
+  recommended?: boolean;
+}
+
+/** 카테고리 데이터 타입 */
+export interface CategoriesData {
+  required: CategoryItem[];
+  optional: CategoryItem[];
+}
+
+/** 프리셋 타입 */
+export interface Preset {
+  id: string;
+  name: string;
+  description: string;
+  icon: string;
+  color: string;
+  categories: string[];
+  values: Record<string, Record<string, any>>;
+}
+
+/** 프리셋 데이터 타입 */
+export interface PresetsData {
+  presets: Preset[];
+}

@@ -1,0 +1,240 @@
+{
+  "presets": [
+    {
+      "id": "spring-boot-basic",
+      "name": "Spring Boot 기본",
+      "description": "Spring Boot 입문자를 위한 기본 설정",
+      "icon": "🌱",
+      "color": "from-green-400 to-green-600",
+      "categories": ["project", "architecture", "aiTool", "dataLayer", "testing"],
+      "values": {
+        "project": {
+          "projectType": "backend",
+          "language": "java",
+          "javaVersion": "17",
+          "framework": "spring-boot",
+          "buildTool": "gradle"
+        },
+        "architecture": {
+          "architecturePattern": "layered",
+          "moduleStructure": "monolith",
+          "apiStyle": ["rest"],
+          "dtoStrategy": "separate"
+        },
+        "dataLayer": {
+          "database": ["mysql"],
+          "orm": "jpa",
+          "complexQueryStrategy": "jpql",
+          "repositoryStrategy": "spring-data-only",
+          "transactionStrategy": "service-layer"
+        },
+        "testing": {
+          "testFramework": ["junit5"],
+          "mockFramework": "mockito",
+          "testNaming": "korean-descriptive",
+          "testTypes": ["unit", "integration"]
+        },
+        "aiTool": {
+          "responseLanguage": "korean",
+          "responseStyle": "concise",
+          "restrictions": ["no-field-injection", "no-system-out"]
+        }
+      }
+    },
+    {
+      "id": "spring-jpa-standard",
+      "name": "Spring + JPA 표준",
+      "description": "실무에서 많이 쓰는 JPA 프로젝트 표준 설정",
+      "icon": "⚡",
+      "color": "from-blue-400 to-blue-600",
+      "categories": ["project", "architecture", "aiTool", "dataLayer", "codeStyle", "testing", "git"],
+      "values": {
+        "project": {
+          "projectType": "backend",
+          "language": "java",
+          "javaVersion": "17",
+          "framework": "spring-boot",
+          "buildTool": "gradle"
+        },
+        "architecture": {
+          "architecturePattern": "layered",
+          "moduleStructure": "monolith",
+          "apiStyle": ["rest"],
+          "dtoStrategy": "separate"
+        },
+        "dataLayer": {
+          "database": ["mysql"],
+          "orm": "jpa",
+          "complexQueryStrategy": "querydsl",
+          "complexQueryThreshold": ["3-joins", "dynamic-conditions"],
+          "repositoryStrategy": "custom-impl",
+          "transactionStrategy": "service-layer"
+        },
+        "codeStyle": {
+          "packageStructure": "by-feature",
+          "nullHandling": "optional"
+        },
+        "testing": {
+          "testFramework": ["junit5"],
+          "mockFramework": "mockito",
+          "testNaming": "korean-descriptive",
+          "testTypes": ["unit", "integration", "slice"],
+          "testDataStrategy": "builder"
+        },
+        "git": {
+          "branchStrategy": "github-flow",
+          "commitConvention": "conventional-commits",
+          "commitLanguage": "korean",
+          "mergeStrategy": "squash"
+        },
+        "aiTool": {
+          "responseLanguage": "korean",
+          "responseStyle": "concise",
+          "restrictions": ["no-field-injection", "no-system-out", "no-raw-types", "no-magic-numbers"]
+        }
+      }
+    },
+    {
+      "id": "hexagonal-ddd",
+      "name": "Hexagonal + DDD",
+      "description": "도메인 중심 설계, 클린 아키텍처",
+      "icon": "🎯",
+      "color": "from-purple-400 to-purple-600",
+      "categories": ["project", "architecture", "aiTool", "dataLayer", "codeStyle", "testing", "git", "domain"],
+      "values": {
+        "project": {
+          "projectType": "backend",
+          "language": "java",
+          "javaVersion": "17",
+          "framework": "spring-boot",
+          "buildTool": "gradle"
+        },
+        "architecture": {
+          "architecturePattern": "hexagonal",
+          "moduleStructure": "multi-module",
+          "apiStyle": ["rest"],
+          "dtoStrategy": "separate"
+        },
+        "dataLayer": {
+          "database": ["postgresql"],
+          "orm": "jpa",
+          "complexQueryStrategy": "querydsl",
+          "complexQueryThreshold": ["3-joins", "dynamic-conditions", "aggregation"],
+          "repositoryStrategy": "custom-impl",
+          "transactionStrategy": "usecase-layer"
+        },
+        "codeStyle": {
+          "packageStructure": "by-domain",
+          "nullHandling": "optional"
+        },
+        "testing": {
+          "testFramework": ["junit5"],
+          "mockFramework": "mockito",
+          "testNaming": "korean-descriptive",
+          "testTypes": ["unit", "integration"],
+          "testDataStrategy": "builder"
+        },
+        "git": {
+          "branchStrategy": "git-flow",
+          "commitConvention": "conventional-commits",
+          "commitLanguage": "korean",
+          "mergeStrategy": "squash"
+        },
+        "aiTool": {
+          "responseLanguage": "korean",
+          "responseStyle": "detailed",
+          "restrictions": ["no-field-injection", "no-system-out", "no-raw-types", "no-magic-numbers", "no-unnecessary-abstraction"]
+        }
+      }
+    },
+    {
+      "id": "nextjs-fullstack",
+      "name": "Next.js 풀스택",
+      "description": "Next.js App Router 기반 풀스택",
+      "icon": "🚀",
+      "color": "from-gray-600 to-gray-800",
+      "categories": ["project", "architecture", "aiTool", "codeStyle", "testing", "git"],
+      "values": {
+        "project": {
+          "projectType": "fullstack",
+          "language": "typescript",
+          "framework": "nextjs",
+          "buildTool": "pnpm"
+        },
+        "architecture": {
+          "architecturePattern": "layered",
+          "moduleStructure": "monolith",
+          "apiStyle": ["rest"]
+        },
+        "codeStyle": {
+          "packageStructure": "by-feature",
+          "nullHandling": "optional"
+        },
+        "testing": {
+          "testFramework": ["vitest"],
+          "testNaming": "korean-descriptive",
+          "testTypes": ["unit", "e2e"]
+        },
+        "git": {
+          "branchStrategy": "github-flow",
+          "commitConvention": "conventional-commits",
+          "commitLanguage": "korean"
+        },
+        "aiTool": {
+          "responseLanguage": "korean",
+          "responseStyle": "concise",
+          "restrictions": []
+        }
+      }
+    },
+    {
+      "id": "kotlin-spring",
+      "name": "Kotlin + Spring",
+      "description": "Kotlin 기반 Spring Boot 프로젝트",
+      "icon": "🎨",
+      "color": "from-orange-400 to-pink-500",
+      "categories": ["project", "architecture", "aiTool", "dataLayer", "testing"],
+      "values": {
+        "project": {
+          "projectType": "backend",
+          "language": "kotlin",
+          "framework": "spring-boot",
+          "buildTool": "gradle"
+        },
+        "architecture": {
+          "architecturePattern": "layered",
+          "moduleStructure": "monolith",
+          "apiStyle": ["rest"],
+          "dtoStrategy": "separate"
+        },
+        "dataLayer": {
+          "database": ["postgresql"],
+          "orm": "jpa",
+          "complexQueryStrategy": "querydsl",
+          "repositoryStrategy": "custom-impl",
+          "transactionStrategy": "service-layer"
+        },
+        "testing": {
+          "testFramework": ["junit5", "kotest"],
+          "mockFramework": "mockk",
+          "testNaming": "korean-descriptive",
+          "testTypes": ["unit", "integration"]
+        },
+        "aiTool": {
+          "responseLanguage": "korean",
+          "responseStyle": "concise",
+          "restrictions": ["no-field-injection"]
+        }
+      }
+    },
+    {
+      "id": "custom",
+      "name": "직접 설정",
+      "description": "모든 옵션을 직접 선택",
+      "icon": "⚙️",
+      "color": "from-gray-400 to-gray-500",
+      "categories": [],
+      "values": {}
+    }
+  ]
+}

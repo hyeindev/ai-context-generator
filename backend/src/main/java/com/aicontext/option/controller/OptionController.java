@@ -41,4 +41,20 @@ public class OptionController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+
+    /**
+     * 카테고리 정보 조회 (필수/선택 구분)
+     */
+    @GetMapping("/categories")
+    public ResponseEntity<Map<String, Object>> getCategories() {
+        return ResponseEntity.ok(optionService.getCategories());
+    }
+
+    /**
+     * 프리셋 목록 조회
+     */
+    @GetMapping("/presets")
+    public ResponseEntity<Map<String, Object>> getPresets() {
+        return ResponseEntity.ok(optionService.getPresets());
+    }
 }

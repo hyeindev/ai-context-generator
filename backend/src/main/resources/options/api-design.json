@@ -1,0 +1,101 @@
+{
+  "id": "apiDesign",
+  "title": "API 설계",
+  "description": "응답 포맷, 페이지네이션, API 규칙을 설정합니다.",
+  "options": [
+    {
+      "id": "responseWrapper",
+      "label": "응답 래퍼 포맷",
+      "type": "select",
+      "required": true,
+      "values": [
+        {
+          "id": "data-meta",
+          "label": "{ data, meta }",
+          "description": "데이터와 메타 정보 분리"
+        },
+        {
+          "id": "success-data-error",
+          "label": "{ success, data, error }",
+          "description": "성공 여부 명시"
+        },
+        {
+          "id": "no-wrapper",
+          "label": "래퍼 없음",
+          "description": "데이터 직접 반환"
+        }
+      ]
+    },
+    {
+      "id": "paginationType",
+      "label": "페이지네이션 방식",
+      "type": "select",
+      "required": false,
+      "values": [
+        {
+          "id": "offset",
+          "label": "Offset 기반",
+          "description": "page, size 파라미터 (Spring 기본)"
+        },
+        {
+          "id": "cursor",
+          "label": "Cursor 기반",
+          "description": "cursor 토큰 사용, 대용량에 적합"
+        },
+        {
+          "id": "keyset",
+          "label": "Keyset 기반",
+          "description": "마지막 ID 기준, 성능 우수"
+        }
+      ]
+    },
+    {
+      "id": "filteringMethod",
+      "label": "필터링/검색 방식",
+      "type": "select",
+      "required": false,
+      "values": [
+        {
+          "id": "query-params",
+          "label": "Query Parameter",
+          "description": "GET /users?name=kim&status=active"
+        },
+        {
+          "id": "post-body",
+          "label": "POST Body",
+          "description": "POST /users/search + JSON body"
+        },
+        {
+          "id": "graphql-style",
+          "label": "GraphQL 스타일",
+          "description": "filter, sort 객체 전달"
+        }
+      ]
+    },
+    {
+      "id": "bulkApiSupport",
+      "label": "Bulk API 지원",
+      "type": "boolean",
+      "required": false,
+      "description": "POST /users/bulk 등 대량 처리 API"
+    },
+    {
+      "id": "httpStatusStrategy",
+      "label": "HTTP 상태 코드 전략",
+      "type": "select",
+      "required": false,
+      "values": [
+        {
+          "id": "strict-rest",
+          "label": "엄격한 REST",
+          "description": "201 Created, 204 No Content 등 상세 구분"
+        },
+        {
+          "id": "simple",
+          "label": "단순화",
+          "description": "성공 200, 클라 오류 400, 서버 오류 500"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "id": "security",
+  "title": "보안 설정",
+  "description": "인증, 권한, 보안 정책을 설정합니다.",
+  "options": [
+    {
+      "id": "authMethod",
+      "label": "인증 방식",
+      "type": "select",
+      "required": true,
+      "values": [
+        { "id": "jwt", "label": "JWT", "description": "Stateless 토큰 기반 인증" },
+        { "id": "session", "label": "Session", "description": "서버 세션 기반 인증" },
+        { "id": "oauth2", "label": "OAuth2", "description": "소셜 로그인 등 OAuth2 인증" },
+        { "id": "jwt-oauth2", "label": "JWT + OAuth2", "description": "JWT와 OAuth2 혼용" }
+      ]
+    },
+    {
+      "id": "tokenStorage",
+      "label": "토큰 저장 위치",
+      "type": "select",
+      "required": false,
+      "dependsOn": {
+        "field": "authMethod",
+        "showWhen": ["jwt", "jwt-oauth2"]
+      },
+      "values": [
+        { "id": "httponly-cookie", "label": "HttpOnly Cookie", "description": "XSS 방지, 권장" },
+        { "id": "localstorage", "label": "LocalStorage", "description": "간편하지만 XSS 취약" },
+        { "id": "memory", "label": "Memory Only", "description": "가장 안전, 새로고침 시 로그아웃" }
+      ]
+    },
+    {
+      "id": "authorizationMethod",
+      "label": "권한 관리 방식",
+      "type": "select",
+      "required": false,
+      "values": [
+        { "id": "rbac", "label": "RBAC", "description": "역할 기반 접근 제어 (ADMIN, USER 등)" },
+        { "id": "abac", "label": "ABAC", "description": "속성 기반 접근 제어" },
+        { "id": "simple", "label": "단순 인증 체크", "description": "로그인 여부만 확인" }
+      ]
+    },
+    {
+      "id": "passwordPolicy",
+      "label": "비밀번호 정책",
+      "type": "multiSelect",
+      "required": false,
+      "values": [
+        { "id": "min-8", "label": "최소 8자", "description": "비밀번호 최소 길이 8자" },
+        { "id": "special-char", "label": "특수문자 필수", "description": "!@#$% 등 포함" },
+        { "id": "uppercase", "label": "대문자 필수", "description": "영문 대문자 포함" },
+        { "id": "number", "label": "숫자 필수", "description": "숫자 포함" },
+        { "id": "no-repeat", "label": "연속 문자 금지", "description": "aaa, 111 등 금지" }
+      ]
+    },
+    {
+      "id": "securityHeaders",
+      "label": "보안 헤더",
+      "type": "multiSelect",
+      "required": false,
+      "values": [
+        { "id": "cors", "label": "CORS 설정", "description": "Cross-Origin 요청 제어" },
+        { "id": "csp", "label": "CSP", "description": "Content-Security-Policy" },
+        { "id": "hsts", "label": "HSTS", "description": "HTTPS 강제" },
+        { "id": "xss-protection", "label": "XSS Protection", "description": "X-XSS-Protection 헤더" }
+      ]
+    }
+  ]
+}

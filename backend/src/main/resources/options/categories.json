@@ -1,0 +1,83 @@
+{
+  "required": [
+    {
+      "id": "project",
+      "title": "프로젝트 기본",
+      "description": "언어, 프레임워크, 빌드 도구",
+      "icon": "📦",
+      "order": 1
+    },
+    {
+      "id": "architecture",
+      "title": "아키텍처",
+      "description": "프로젝트 구조 및 패턴",
+      "icon": "🏗️",
+      "order": 2
+    },
+    {
+      "id": "aiTool",
+      "title": "AI 응답 설정",
+      "description": "응답 언어, 스타일, 제한사항",
+      "icon": "🤖",
+      "order": 3
+    }
+  ],
+  "optional": [
+    {
+      "id": "dataLayer",
+      "title": "데이터 레이어",
+      "description": "DB, ORM, 쿼리 전략",
+      "icon": "🗄️",
+      "recommended": true
+    },
+    {
+      "id": "codeStyle",
+      "title": "코드 스타일",
+      "description": "네이밍 컨벤션, 패키지 구조",
+      "icon": "✨",
+      "recommended": true
+    },
+    {
+      "id": "testing",
+      "title": "테스트",
+      "description": "테스트 프레임워크, 네이밍",
+      "icon": "🧪",
+      "recommended": true
+    },
+    {
+      "id": "git",
+      "title": "Git",
+      "description": "브랜치 전략, 커밋 컨벤션",
+      "icon": "🌿",
+      "recommended": false
+    },
+    {
+      "id": "security",
+      "title": "보안",
+      "description": "인증, 권한, 보안 정책",
+      "icon": "🔐",
+      "recommended": false
+    },
+    {
+      "id": "errorHandling",
+      "title": "예외 처리",
+      "description": "에러 코드, 예외 계층",
+      "icon": "⚠️",
+      "recommended": false
+    },
+    {
+      "id": "apiDesign",
+      "title": "API 설계",
+      "description": "응답 포맷, 페이지네이션",
+      "icon": "🔌",
+      "recommended": false
+    },
+    {
+      "id": "domain",
+      "title": "도메인 설계",
+      "description": "엔티티, VO, 연관관계",
+      "icon": "🎯",
+      "recommended": false
+    }
+  ]
+}
