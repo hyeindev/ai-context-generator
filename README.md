@@ -109,15 +109,6 @@ ai-context-generator/
 └── README.md
 ```
 
-## API 엔드포인트
-
-| Method | Endpoint | 설명 |
-|--------|----------|------|
-| GET | `/api/options` | 전체 옵션 목록 조회 |
-| GET | `/api/options/{id}` | 개별 옵션 조회 |
-| GET | `/api/options/categories` | 카테고리 정보 조회 |
-| GET | `/api/options/presets` | 프리셋 목록 조회 |
-| POST | `/api/generate` | 컨텍스트 파일 생성 |
 
 ## 라이선스
 
