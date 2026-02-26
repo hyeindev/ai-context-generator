@@ -102,6 +102,8 @@ public class GenerateService {
             ClassPathResource resource = new ClassPathResource("templates/" + toolId + ".mustache");
             Template template = Mustache.compiler()
                     .escapeHTML(false)
+                    .defaultValue("")  // 누락된 필드는 빈 문자열로 처리
+                    .nullValue("")     // null 값도 빈 문자열로 처리
                     .compile(new InputStreamReader(resource.getInputStream(), StandardCharsets.UTF_8));
             return template.execute(context);
         } catch (Exception e) {
