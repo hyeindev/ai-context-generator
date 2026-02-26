@@ -1,0 +1,134 @@
+# Project Context
+
+{{#project}}
+## Project Information
+- **Type**: {{projectType}}
+- **Language**: {{language}}{{#javaVersion}} ({{javaVersion}}){{/javaVersion}}
+- **Framework**: {{framework}}
+- **Build Tool**: {{buildTool}}
+{{/project}}
+
+{{#architecture}}
+## Architecture
+- **Pattern**: {{architecturePattern}}
+- **Module Structure**: {{moduleStructure}}
+{{#apiStyle}}- **API Style**: {{.}}{{/apiStyle}}
+{{#apiVersioning}}- **API Versioning**: {{apiVersioning}}{{/apiVersioning}}
+{{#dtoStrategy}}- **DTO Strategy**: {{dtoStrategy}}{{/dtoStrategy}}
+{{/architecture}}
+
+{{#dataLayer}}
+## Data Layer
+- **Database**: {{#database}}{{.}} {{/database}}
+- **ORM**: {{orm}}
+{{#queryDsl}}- **QueryDSL**: Enabled{{/queryDsl}}
+{{#repositoryStrategy}}- **Repository Strategy**: {{repositoryStrategy}}{{/repositoryStrategy}}
+{{#transactionStrategy}}- **Transaction Strategy**: {{transactionStrategy}}{{/transactionStrategy}}
+{{#cacheStrategy}}- **Cache Strategy**: {{#cacheStrategy}}{{.}} {{/cacheStrategy}}{{/cacheStrategy}}
+{{/dataLayer}}
+
+{{#codeStyle}}
+## Code Style
+
+### Naming Convention
+{{#namingConvention}}
+- Class: {{className}}
+- Method: {{methodName}}
+- Variable: {{variableName}}
+- Constant: {{constantName}}
+{{/namingConvention}}
+
+### Package Structure
+- Style: {{packageStructure}}
+
+### Error Handling
+{{#errorHandling}}
+- Exception Strategy: {{exceptionStrategy}}
+- Response Format: {{responseFormat}}
+{{/errorHandling}}
+
+{{#logging}}
+### Logging
+- Framework: {{framework}}
+- Format: {{format}}
+{{/logging}}
+
+{{#nullHandling}}
+### Null Handling
+- Strategy: {{nullHandling}}
+{{/nullHandling}}
+{{/codeStyle}}
+
+{{#testing}}
+## Testing
+
+### Framework
+{{#testFramework}}- {{.}}
+{{/testFramework}}
+{{#mockFramework}}- Mock: {{mockFramework}}{{/mockFramework}}
+
+### Test Naming
+- Convention: {{testNaming}}
+
+### Test Types
+{{#testTypes}}- {{.}}
+{{/testTypes}}
+
+{{#testCoverage}}
+### Coverage
+- Tool: {{tool}}
+- Minimum Line: {{minimumLine}}
+- Minimum Branch: {{minimumBranch}}
+{{/testCoverage}}
+
+{{#testDataStrategy}}
+### Test Data
+- Strategy: {{testDataStrategy}}
+{{/testDataStrategy}}
+{{/testing}}
+
+{{#git}}
+## Git Conventions
+
+### Branch Strategy
+- Strategy: {{branchStrategy}}
+- Naming: {{branchNaming}}
+
+### Commit Convention
+- Style: {{commitConvention}}
+- Language: {{commitLanguage}}
+
+{{#mergeStrategy}}
+### Merge Strategy
+- {{mergeStrategy}}
+{{/mergeStrategy}}
+{{/git}}
+
+{{#aiTool}}
+## AI Assistant Instructions
+
+### Response Settings
+- Language: {{responseLanguage}}
+{{#responseStyle}}- Style: {{responseStyle}}{{/responseStyle}}
+
+{{#codeGeneration}}
+### Code Generation
+- Comments: {{includeComments}}
+- Tests: {{includeTests}}
+{{#preferredPatterns}}- Preferred Patterns: {{#preferredPatterns}}{{.}} {{/preferredPatterns}}{{/preferredPatterns}}
+{{/codeGeneration}}
+
+{{#restrictions}}
+### Restrictions (DO NOT)
+{{#restrictions}}
+- {{.}}
+{{/restrictions}}
+{{/restrictions}}
+
+{{#contextPriority}}
+### Priority Order
+{{#priorities}}
+1. {{.}}
+{{/priorities}}
+{{/contextPriority}}
+{{/aiTool}}

@@ -1,0 +1,33 @@
+{{#project}}
+# {{framework}} ({{language}}) Project
+{{/project}}
+
+{{#architecture}}
+Architecture: {{architecturePattern}}
+{{/architecture}}
+
+{{#codeStyle}}
+## Style Guide
+{{#namingConvention}}
+- {{className}} for class names
+- {{methodName}} for method names
+- {{variableName}} for variable names
+{{/namingConvention}}
+{{/codeStyle}}
+
+{{#testing}}
+## Testing
+Framework: {{#testFramework}}{{.}}{{/testFramework}}
+Style: {{testNaming}}
+{{/testing}}
+
+{{#aiTool}}
+## AI Settings
+Response: {{responseLanguage}}
+{{#restrictions}}
+Restrictions:
+{{#restrictions}}
+- {{.}}
+{{/restrictions}}
+{{/restrictions}}
+{{/aiTool}}

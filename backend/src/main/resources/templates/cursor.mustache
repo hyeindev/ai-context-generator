@@ -1,0 +1,42 @@
+{{#project}}
+# Project: {{framework}} ({{language}})
+{{/project}}
+
+{{#architecture}}
+## Architecture: {{architecturePattern}}
+{{/architecture}}
+
+{{#codeStyle}}
+## Code Style
+{{#namingConvention}}
+- Use {{className}} for classes
+- Use {{methodName}} for methods
+- Use {{variableName}} for variables
+{{/namingConvention}}
+- Package structure: {{packageStructure}}
+{{/codeStyle}}
+
+{{#testing}}
+## Testing
+- Framework: {{#testFramework}}{{.}} {{/testFramework}}
+- Naming: {{testNaming}}
+{{/testing}}
+
+{{#git}}
+## Git
+- Commit style: {{commitConvention}}
+- Language: {{commitLanguage}}
+{{/git}}
+
+{{#aiTool}}
+## Instructions
+- Response language: {{responseLanguage}}
+{{#responseStyle}}- Style: {{responseStyle}}{{/responseStyle}}
+
+{{#restrictions}}
+### DO NOT:
+{{#restrictions}}
+- {{.}}
+{{/restrictions}}
+{{/restrictions}}
+{{/aiTool}}

@@ -1,0 +1,35 @@
+{{#project}}
+# Project Context
+- Framework: {{framework}}
+- Language: {{language}}
+- Build: {{buildTool}}
+{{/project}}
+
+{{#architecture}}
+## Architecture
+- Pattern: {{architecturePattern}}
+- Structure: {{moduleStructure}}
+{{/architecture}}
+
+{{#codeStyle}}
+## Code Conventions
+{{#namingConvention}}
+- Classes: {{className}}
+- Methods: {{methodName}}
+- Variables: {{variableName}}
+{{/namingConvention}}
+{{/codeStyle}}
+
+{{#testing}}
+## Testing
+- Framework: {{#testFramework}}{{.}} {{/testFramework}}
+- Naming: {{testNaming}}
+{{/testing}}
+
+{{#aiTool}}
+## Guidelines
+- Language: {{responseLanguage}}
+{{#restrictions}}
+- Restrictions: {{#restrictions}}{{.}}, {{/restrictions}}
+{{/restrictions}}
+{{/aiTool}}

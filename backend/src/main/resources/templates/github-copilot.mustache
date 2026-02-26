@@ -1,0 +1,38 @@
+{{#project}}
+# {{framework}} Project Guidelines
+
+Language: {{language}}
+Build: {{buildTool}}
+{{/project}}
+
+{{#architecture}}
+## Architecture
+Pattern: {{architecturePattern}}
+{{/architecture}}
+
+{{#codeStyle}}
+## Conventions
+{{#namingConvention}}
+Classes: {{className}}
+Methods: {{methodName}}
+Variables: {{variableName}}
+{{/namingConvention}}
+{{/codeStyle}}
+
+{{#testing}}
+## Testing
+{{#testFramework}}Use {{.}} for testing.{{/testFramework}}
+Naming convention: {{testNaming}}
+{{/testing}}
+
+{{#aiTool}}
+## Response Guidelines
+{{#responseLanguage}}Language: {{responseLanguage}}{{/responseLanguage}}
+
+{{#restrictions}}
+Avoid:
+{{#restrictions}}
+- {{.}}
+{{/restrictions}}
+{{/restrictions}}
+{{/aiTool}}
