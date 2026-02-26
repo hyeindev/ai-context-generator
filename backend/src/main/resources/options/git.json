@@ -1,0 +1,217 @@
+{
+  "id": "git",
+  "title": "Git 설정",
+  "description": "브랜치 전략, 커밋 컨벤션, PR 템플릿을 설정합니다.",
+  "options": [
+    {
+      "id": "branchStrategy",
+      "label": "브랜치 전략",
+      "type": "select",
+      "required": true,
+      "values": [
+        {
+          "id": "git-flow",
+          "label": "Git Flow",
+          "description": "main, develop, feature/, release/, hotfix/",
+          "branches": {
+            "main": "프로덕션 브랜치",
+            "develop": "개발 통합 브랜치",
+            "feature/*": "기능 개발",
+            "release/*": "릴리스 준비",
+            "hotfix/*": "긴급 수정"
+          }
+        },
+        {
+          "id": "github-flow",
+          "label": "GitHub Flow",
+          "description": "main + feature 브랜치만 사용",
+          "branches": {
+            "main": "항상 배포 가능한 브랜치",
+            "feature/*": "기능 개발 후 바로 main에 머지"
+          }
+        },
+        {
+          "id": "trunk-based",
+          "label": "Trunk-Based Development",
+          "description": "main 브랜치 중심, 짧은 생명주기 브랜치",
+          "branches": {
+            "main": "트렁크 브랜치",
+            "short-lived/*": "1-2일 내 머지되는 짧은 브랜치"
+          }
+        },
+        {
+          "id": "gitlab-flow",
+          "label": "GitLab Flow",
+          "description": "환경별 브랜치 (production, staging)",
+          "branches": {
+            "main": "개발 브랜치",
+            "staging": "스테이징 환경",
+            "production": "프로덕션 환경"
+          }
+        }
+      ]
+    },
+    {
+      "id": "branchNaming",
+      "label": "브랜치 네이밍",
+      "type": "select",
+      "required": true,
+      "values": [
+        {
+          "id": "type-ticket-description",
+          "label": "type/ticket-description",
+          "example": "feature/PROJ-123-add-login"
+        },
+        {
+          "id": "type-description",
+          "label": "type/description",
+          "example": "feature/add-login"
+        },
+        {
+          "id": "ticket-description",
+          "label": "ticket/description",
+          "example": "PROJ-123/add-login"
+        },
+        {
+          "id": "username-type-description",
+          "label": "username/type/description",
+          "example": "john/feature/add-login"
+        }
+      ]
+    },
+    {
+      "id": "commitConvention",
+      "label": "커밋 컨벤션",
+      "type": "select",
+      "required": true,
+      "values": [
+        {
+          "id": "conventional-commits",
+          "label": "Conventional Commits",
+          "description": "type(scope): description",
+          "types": [
+            { "type": "feat", "description": "새로운 기능" },
+            { "type": "fix", "description": "버그 수정" },
+            { "type": "docs", "description": "문서 변경" },
+            { "type": "style", "description": "코드 포맷팅" },
+            { "type": "refactor", "description": "리팩토링" },
+            { "type": "test", "description": "테스트" },
+            { "type": "chore", "description": "빌드, 설정 변경" },
+            { "type": "perf", "description": "성능 개선" }
+          ],
+          "example": "feat(auth): add JWT token validation"
+        },
+        {
+          "id": "gitmoji",
+          "label": "Gitmoji",
+          "description": "이모지 + 설명",
+          "example": ":sparkles: Add login feature"
+        },
+        {
+          "id": "ticket-prefix",
+          "label": "Ticket Prefix",
+          "description": "[TICKET-ID] 설명",
+          "example": "[PROJ-123] Add login feature"
+        },
+        {
+          "id": "korean-conventional",
+          "label": "한글 Conventional",
+          "description": "type(scope): 한글 설명",
+          "example": "feat(인증): JWT 토큰 검증 추가"
+        }
+      ]
+    },
+    {
+      "id": "commitLanguage",
+      "label": "커밋 메시지 언어",
+      "type": "select",
+      "required": true,
+      "values": [
+        { "id": "english", "label": "영어", "description": "Commit in English" },
+        { "id": "korean", "label": "한글", "description": "한글로 커밋" },
+        { "id": "mixed", "label": "혼용", "description": "type은 영어, 설명은 한글" }
+      ]
+    },
+    {
+      "id": "prTemplate",
+      "label": "PR 템플릿",
+      "type": "object",
+      "required": false,
+      "properties": {
+        "sections": {
+          "label": "포함 섹션",
+          "type": "multiSelect",
+          "values": [
+            { "id": "summary", "label": "Summary", "description": "변경 사항 요약" },
+            { "id": "motivation", "label": "Motivation", "description": "변경 이유" },
+            { "id": "changes", "label": "Changes", "description": "상세 변경 내용" },
+            { "id": "testing", "label": "Testing", "description": "테스트 방법" },
+            { "id": "screenshots", "label": "Screenshots", "description": "스크린샷 (UI 변경 시)" },
+            { "id": "checklist", "label": "Checklist", "description": "체크리스트" },
+            { "id": "related-issues", "label": "Related Issues", "description": "관련 이슈 링크" }
+          ]
+        },
+        "requiredReviewers": {
+          "label": "필수 리뷰어 수",
+          "type": "select",
+          "values": [
+            { "id": "1", "label": "1명" },
+            { "id": "2", "label": "2명" },
+            { "id": "0", "label": "필수 아님" }
+          ]
+        }
+      }
+    },
+    {
+      "id": "mergeStrategy",
+      "label": "머지 전략",
+      "type": "select",
+      "required": false,
+      "values": [
+        {
+          "id": "squash",
+          "label": "Squash and Merge",
+          "description": "커밋을 하나로 합쳐서 머지"
+        },
+        {
+          "id": "rebase",
+          "label": "Rebase and Merge",
+          "description": "리베이스 후 머지"
+        },
+        {
+          "id": "merge-commit",
+          "label": "Merge Commit",
+          "description": "머지 커밋 생성"
+        }
+      ]
+    },
+    {
+      "id": "hooks",
+      "label": "Git Hooks",
+      "type": "multiSelect",
+      "required": false,
+      "values": [
+        {
+          "id": "pre-commit-lint",
+          "label": "Pre-commit Lint",
+          "description": "커밋 전 린트 검사"
+        },
+        {
+          "id": "pre-commit-format",
+          "label": "Pre-commit Format",
+          "description": "커밋 전 포맷팅"
+        },
+        {
+          "id": "commit-msg-validate",
+          "label": "Commit Message Validation",
+          "description": "커밋 메시지 컨벤션 검사"
+        },
+        {
+          "id": "pre-push-test",
+          "label": "Pre-push Test",
+          "description": "푸시 전 테스트 실행"
+        }
+      ]
+    }
+  ]
+}

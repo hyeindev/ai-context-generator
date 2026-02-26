@@ -1,0 +1,190 @@
+{
+  "id": "aiTool",
+  "title": "AI 도구 설정",
+  "description": "대상 AI 도구와 응답 스타일을 설정합니다.",
+  "options": [
+    {
+      "id": "targetTools",
+      "label": "대상 AI 도구",
+      "type": "multiSelect",
+      "required": true,
+      "values": [
+        {
+          "id": "claude-code",
+          "label": "Claude Code",
+          "description": "Anthropic Claude CLI 도구",
+          "outputFile": "CLAUDE.md"
+        },
+        {
+          "id": "cursor",
+          "label": "Cursor",
+          "description": "Cursor AI IDE",
+          "outputFile": ".cursorrules"
+        },
+        {
+          "id": "github-copilot",
+          "label": "GitHub Copilot",
+          "description": "GitHub Copilot",
+          "outputFile": ".github/copilot-instructions.md"
+        },
+        {
+          "id": "windsurf",
+          "label": "Windsurf",
+          "description": "Codeium Windsurf IDE",
+          "outputFile": ".windsurfrules"
+        },
+        {
+          "id": "aider",
+          "label": "Aider",
+          "description": "Aider AI 페어 프로그래밍",
+          "outputFile": ".aider.conf.yml"
+        },
+        {
+          "id": "cline",
+          "label": "Cline",
+          "description": "VSCode Cline 확장",
+          "outputFile": ".clinerules"
+        }
+      ]
+    },
+    {
+      "id": "responseLanguage",
+      "label": "응답 언어",
+      "type": "select",
+      "required": true,
+      "values": [
+        { "id": "korean", "label": "한글", "description": "한글로 응답" },
+        { "id": "english", "label": "English", "description": "Respond in English" },
+        { "id": "bilingual", "label": "혼용", "description": "코드는 영어, 설명은 한글" }
+      ]
+    },
+    {
+      "id": "responseStyle",
+      "label": "응답 스타일",
+      "type": "select",
+      "required": false,
+      "values": [
+        {
+          "id": "concise",
+          "label": "간결함",
+          "description": "핵심만 간단히"
+        },
+        {
+          "id": "detailed",
+          "label": "상세함",
+          "description": "자세한 설명 포함"
+        },
+        {
+          "id": "educational",
+          "label": "교육적",
+          "description": "학습 목적의 상세 설명"
+        }
+      ]
+    },
+    {
+      "id": "codeGeneration",
+      "label": "코드 생성 설정",
+      "type": "object",
+      "required": false,
+      "properties": {
+        "includeComments": {
+          "label": "주석 포함",
+          "type": "select",
+          "values": [
+            { "id": "minimal", "label": "최소한", "description": "복잡한 로직만" },
+            { "id": "moderate", "label": "적당히", "description": "주요 메서드에 주석" },
+            { "id": "detailed", "label": "상세히", "description": "대부분의 코드에 주석" }
+          ]
+        },
+        "includeTests": {
+          "label": "테스트 코드 생성",
+          "type": "select",
+          "values": [
+            { "id": "always", "label": "항상", "description": "코드 생성 시 테스트도 함께" },
+            { "id": "on-request", "label": "요청 시", "description": "요청할 때만" },
+            { "id": "never", "label": "안 함", "description": "테스트 코드 생성 안 함" }
+          ]
+        },
+        "preferredPatterns": {
+          "label": "선호 패턴",
+          "type": "multiSelect",
+          "values": [
+            { "id": "functional", "label": "함수형", "description": "Stream, Lambda 선호" },
+            { "id": "oop", "label": "객체지향", "description": "클래스 기반 설계" },
+            { "id": "immutable", "label": "불변성", "description": "불변 객체 선호" },
+            { "id": "defensive", "label": "방어적", "description": "방어적 프로그래밍" }
+          ]
+        }
+      }
+    },
+    {
+      "id": "restrictions",
+      "label": "제한 사항",
+      "type": "multiSelect",
+      "required": false,
+      "description": "AI가 하지 말아야 할 것들",
+      "values": [
+        {
+          "id": "no-lombok-builder",
+          "label": "Lombok @Builder 금지",
+          "description": "record나 정적 팩토리 메서드 사용"
+        },
+        {
+          "id": "no-field-injection",
+          "label": "필드 주입 금지",
+          "description": "생성자 주입만 사용"
+        },
+        {
+          "id": "no-raw-types",
+          "label": "Raw Type 금지",
+          "description": "제네릭 타입 명시"
+        },
+        {
+          "id": "no-system-out",
+          "label": "System.out 금지",
+          "description": "Logger 사용"
+        },
+        {
+          "id": "no-magic-numbers",
+          "label": "매직 넘버 금지",
+          "description": "상수로 정의"
+        },
+        {
+          "id": "no-null-return",
+          "label": "null 반환 금지",
+          "description": "Optional 또는 빈 컬렉션 반환"
+        },
+        {
+          "id": "no-wildcard-import",
+          "label": "와일드카드 import 금지",
+          "description": "명시적 import 사용"
+        },
+        {
+          "id": "no-unnecessary-abstraction",
+          "label": "불필요한 추상화 금지",
+          "description": "YAGNI 원칙 준수"
+        }
+      ]
+    },
+    {
+      "id": "contextPriority",
+      "label": "컨텍스트 우선순위",
+      "type": "object",
+      "required": false,
+      "description": "AI가 참고해야 할 우선순위",
+      "properties": {
+        "priorities": {
+          "label": "우선순위 (높은 순)",
+          "type": "multiSelect",
+          "ordered": true,
+          "values": [
+            { "id": "existing-code", "label": "기존 코드 패턴", "description": "프로젝트의 기존 코드 스타일" },
+            { "id": "team-convention", "label": "팀 컨벤션", "description": "팀에서 정한 규칙" },
+            { "id": "framework-convention", "label": "프레임워크 관례", "description": "프레임워크의 표준 관례" },
+            { "id": "community-best-practice", "label": "커뮤니티 모범 사례", "description": "일반적인 모범 사례" }
+          ]
+        }
+      }
+    }
+  ]
+}

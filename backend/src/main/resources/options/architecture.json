@@ -1,0 +1,137 @@
+{
+  "id": "architecture",
+  "title": "아키텍처 설정",
+  "description": "프로젝트 아키텍처 패턴과 구조를 설정합니다.",
+  "options": [
+    {
+      "id": "architecturePattern",
+      "label": "아키텍처 패턴",
+      "type": "select",
+      "required": true,
+      "values": [
+        {
+          "id": "hexagonal",
+          "label": "Hexagonal (Ports & Adapters)",
+          "description": "도메인 중심 설계, 외부 의존성 분리",
+          "structure": {
+            "layers": ["domain", "application", "adapter"],
+            "subLayers": {
+              "domain": ["model", "repository", "service"],
+              "application": ["port/in", "port/out", "service"],
+              "adapter": ["in/web", "in/event", "out/persistence", "out/external"]
+            }
+          }
+        },
+        {
+          "id": "layered",
+          "label": "Layered Architecture",
+          "description": "전통적인 계층형 아키텍처",
+          "structure": {
+            "layers": ["controller", "service", "repository", "domain"],
+            "subLayers": {}
+          }
+        },
+        {
+          "id": "clean",
+          "label": "Clean Architecture",
+          "description": "엔터프라이즈 비즈니스 규칙 중심",
+          "structure": {
+            "layers": ["entities", "usecases", "interface-adapters", "frameworks"],
+            "subLayers": {}
+          }
+        },
+        {
+          "id": "ddd",
+          "label": "DDD (Domain-Driven Design)",
+          "description": "도메인 모델링 중심 설계",
+          "structure": {
+            "layers": ["domain", "application", "infrastructure", "presentation"],
+            "subLayers": {
+              "domain": ["aggregate", "entity", "value-object", "domain-service", "repository"],
+              "application": ["command", "query", "event"]
+            }
+          }
+        },
+        {
+          "id": "simple",
+          "label": "Simple MVC",
+          "description": "단순한 MVC 패턴",
+          "structure": {
+            "layers": ["controller", "service", "repository", "model"],
+            "subLayers": {}
+          }
+        }
+      ]
+    },
+    {
+      "id": "moduleStructure",
+      "label": "모듈 구조",
+      "type": "select",
+      "required": true,
+      "values": [
+        {
+          "id": "monolith",
+          "label": "Monolith",
+          "description": "단일 모듈 프로젝트"
+        },
+        {
+          "id": "multi-module",
+          "label": "Multi-Module",
+          "description": "기능별 모듈 분리"
+        },
+        {
+          "id": "modular-monolith",
+          "label": "Modular Monolith",
+          "description": "모듈화된 모놀리스 (MSA 전환 대비)"
+        }
+      ]
+    },
+    {
+      "id": "apiStyle",
+      "label": "API 스타일",
+      "type": "multiSelect",
+      "required": false,
+      "values": [
+        { "id": "rest", "label": "REST API", "description": "RESTful API 설계" },
+        { "id": "graphql", "label": "GraphQL", "description": "GraphQL API" },
+        { "id": "grpc", "label": "gRPC", "description": "gRPC 서비스" },
+        { "id": "websocket", "label": "WebSocket", "description": "실시간 양방향 통신" }
+      ]
+    },
+    {
+      "id": "apiVersioning",
+      "label": "API 버저닝",
+      "type": "select",
+      "required": false,
+      "values": [
+        { "id": "url-path", "label": "URL Path", "description": "/api/v1/users" },
+        { "id": "header", "label": "Header", "description": "X-API-Version: 1" },
+        { "id": "query-param", "label": "Query Parameter", "description": "?version=1" },
+        { "id": "none", "label": "None", "description": "버저닝 없음" }
+      ]
+    },
+    {
+      "id": "dtoStrategy",
+      "label": "DTO 전략",
+      "type": "select",
+      "required": false,
+      "values": [
+        {
+          "id": "separate",
+          "label": "Request/Response 분리",
+          "description": "XxxRequest, XxxResponse로 명확히 분리"
+        },
+        {
+          "id": "unified",
+          "label": "통합 DTO",
+          "description": "XxxDto로 통합 사용"
+        },
+        {
+          "id": "inner-class",
+          "label": "Inner Class",
+          "description": "Controller 내부 클래스로 정의"
+        }
+      ]
+    }
+  ]
+}

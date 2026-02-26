@@ -1,0 +1,161 @@
+{
+  "id": "dataLayer",
+  "title": "데이터 레이어 설정",
+  "description": "데이터베이스, ORM, 쿼리 전략을 설정합니다.",
+  "options": [
+    {
+      "id": "database",
+      "label": "데이터베이스",
+      "type": "multiSelect",
+      "required": true,
+      "values": [
+        { "id": "postgresql", "label": "PostgreSQL", "description": "오픈소스 관계형 DB" },
+        { "id": "mysql", "label": "MySQL", "description": "오픈소스 관계형 DB" },
+        { "id": "mariadb", "label": "MariaDB", "description": "MySQL 호환 DB" },
+        { "id": "oracle", "label": "Oracle", "description": "엔터프라이즈 관계형 DB" },
+        { "id": "mongodb", "label": "MongoDB", "description": "Document NoSQL" },
+        { "id": "redis", "label": "Redis", "description": "In-memory 캐시/DB" },
+        { "id": "elasticsearch", "label": "Elasticsearch", "description": "검색 엔진" },
+        { "id": "h2", "label": "H2", "description": "인메모리 테스트 DB" }
+      ]
+    },
+    {
+      "id": "orm",
+      "label": "ORM/데이터 접근",
+      "type": "select",
+      "required": true,
+      "dependsOn": {
+        "field": "language",
+        "mapping": {
+          "java": ["jpa", "mybatis", "jdbc-template", "jooq"],
+          "kotlin": ["jpa", "exposed", "mybatis"],
+          "typescript": ["prisma", "typeorm", "drizzle"],
+          "python": ["sqlalchemy", "django-orm", "tortoise"],
+          "go": ["gorm", "sqlx", "ent"],
+          "rust": ["diesel", "sqlx", "sea-orm"]
+        }
+      },
+      "values": [
+        { "id": "jpa", "label": "JPA (Hibernate)", "description": "Java 표준 ORM" },
+        { "id": "mybatis", "label": "MyBatis", "description": "SQL 매퍼 프레임워크" },
+        { "id": "jdbc-template", "label": "JdbcTemplate", "description": "Spring JDBC" },
+        { "id": "jooq", "label": "jOOQ", "description": "타입 안전 SQL 빌더" },
+        { "id": "exposed", "label": "Exposed", "description": "Kotlin SQL 프레임워크" },
+        { "id": "prisma", "label": "Prisma", "description": "Next-gen TypeScript ORM" },
+        { "id": "typeorm", "label": "TypeORM", "description": "TypeScript ORM" },
+        { "id": "drizzle", "label": "Drizzle", "description": "TypeScript SQL-like ORM" },
+        { "id": "sqlalchemy", "label": "SQLAlchemy", "description": "Python SQL 툴킷" },
+        { "id": "django-orm", "label": "Django ORM", "description": "Django 내장 ORM" },
+        { "id": "tortoise", "label": "Tortoise ORM", "description": "Python async ORM" },
+        { "id": "gorm", "label": "GORM", "description": "Go ORM" },
+        { "id": "sqlx", "label": "sqlx", "description": "Go/Rust SQL 확장" },
+        { "id": "ent", "label": "Ent", "description": "Go 엔티티 프레임워크" },
+        { "id": "diesel", "label": "Diesel", "description": "Rust 타입 안전 ORM" },
+        { "id": "sea-orm", "label": "SeaORM", "description": "Rust async ORM" }
+      ]
+    },
+    {
+      "id": "queryDsl",
+      "label": "QueryDSL 사용",
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "dependsOn": {
+        "field": "orm",
+        "showWhen": ["jpa"]
+      },
+      "description": "타입 안전한 동적 쿼리 빌더"
+    },
+    {
+      "id": "repositoryStrategy",
+      "label": "Repository 전략",
+      "type": "select",
+      "required": false,
+      "dependsOn": {
+        "field": "orm",
+        "showWhen": ["jpa"]
+      },
+      "values": [
+        {
+          "id": "spring-data-only",
+          "label": "Spring Data JPA Only",
+          "description": "JpaRepository 인터페이스만 사용"
+        },
+        {
+          "id": "custom-impl",
+          "label": "Custom Implementation",
+          "description": "CustomRepository + Impl 패턴"
+        },
+        {
+          "id": "querydsl-support",
+          "label": "QueryDSL Support",
+          "description": "QuerydslRepositorySupport 상속"
+        }
+      ]
+    },
+    {
+      "id": "complexQueryThreshold",
+      "label": "복잡한 쿼리 기준",
+      "type": "select",
+      "required": false,
+      "description": "이 조건을 넘으면 네이티브 쿼리나 별도 전략 사용",
+      "values": [
+        {
+          "id": "3-joins",
+          "label": "3개 이상 JOIN",
+          "description": "3개 이상 테이블 조인 시"
+        },
+        {
+          "id": "dynamic-conditions",
+          "label": "동적 조건 3개+",
+          "description": "동적 WHERE 조건 3개 이상"
+        },
+        {
+          "id": "subquery",
+          "label": "서브쿼리 포함",
+          "description": "서브쿼리가 필요한 경우"
+        },
+        {
+          "id": "aggregation",
+          "label": "집계 함수 사용",
+          "description": "GROUP BY, HAVING 등"
+        }
+      ]
+    },
+    {
+      "id": "transactionStrategy",
+      "label": "트랜잭션 전략",
+      "type": "select",
+      "required": false,
+      "values": [
+        {
+          "id": "service-layer",
+          "label": "Service Layer",
+          "description": "@Transactional을 Service에 선언"
+        },
+        {
+          "id": "facade-pattern",
+          "label": "Facade Pattern",
+          "description": "별도 Facade 클래스에서 트랜잭션 관리"
+        },
+        {
+          "id": "usecase-layer",
+          "label": "UseCase Layer",
+          "description": "Application UseCase에서 트랜잭션 관리"
+        }
+      ]
+    },
+    {
+      "id": "cacheStrategy",
+      "label": "캐시 전략",
+      "type": "multiSelect",
+      "required": false,
+      "values": [
+        { "id": "local-cache", "label": "Local Cache", "description": "Caffeine 등 로컬 캐시" },
+        { "id": "redis-cache", "label": "Redis Cache", "description": "분산 캐시" },
+        { "id": "query-cache", "label": "Query Cache", "description": "Hibernate 2차 캐시" },
+        { "id": "none", "label": "No Cache", "description": "캐시 미사용" }
+      ]
+    }
+  ]
+}

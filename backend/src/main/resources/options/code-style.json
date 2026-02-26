@@ -1,0 +1,201 @@
+{
+  "id": "codeStyle",
+  "title": "코드 스타일 설정",
+  "description": "네이밍 컨벤션, 패키지 구조, 에러 처리 전략을 설정합니다.",
+  "options": [
+    {
+      "id": "namingConvention",
+      "label": "네이밍 컨벤션",
+      "type": "object",
+      "required": true,
+      "properties": {
+        "className": {
+          "label": "클래스명",
+          "type": "select",
+          "values": [
+            { "id": "PascalCase", "label": "PascalCase", "example": "UserService" },
+            { "id": "suffixed", "label": "역할 접미사", "example": "UserServiceImpl, UserController" }
+          ]
+        },
+        "methodName": {
+          "label": "메서드명",
+          "type": "select",
+          "values": [
+            { "id": "camelCase", "label": "camelCase", "example": "getUserById" },
+            { "id": "verb-first", "label": "동사 시작", "example": "findUser, createOrder" }
+          ]
+        },
+        "variableName": {
+          "label": "변수명",
+          "type": "select",
+          "values": [
+            { "id": "camelCase", "label": "camelCase", "example": "userId" },
+            { "id": "snake_case", "label": "snake_case", "example": "user_id" }
+          ]
+        },
+        "constantName": {
+          "label": "상수명",
+          "type": "select",
+          "values": [
+            { "id": "UPPER_SNAKE_CASE", "label": "UPPER_SNAKE_CASE", "example": "MAX_RETRY_COUNT" }
+          ]
+        }
+      }
+    },
+    {
+      "id": "packageStructure",
+      "label": "패키지 구조",
+      "type": "select",
+      "required": true,
+      "values": [
+        {
+          "id": "by-layer",
+          "label": "Layer 기반",
+          "description": "controller/, service/, repository/",
+          "example": "com.example.controller.UserController"
+        },
+        {
+          "id": "by-feature",
+          "label": "Feature 기반",
+          "description": "user/, order/, product/",
+          "example": "com.example.user.UserController"
+        },
+        {
+          "id": "by-domain",
+          "label": "Domain 기반 (Hexagonal)",
+          "description": "domain/user/, adapter/in/web/",
+          "example": "com.example.domain.user.model.User"
+        }
+      ]
+    },
+    {
+      "id": "errorHandling",
+      "label": "에러 처리 전략",
+      "type": "object",
+      "required": true,
+      "properties": {
+        "exceptionStrategy": {
+          "label": "예외 전략",
+          "type": "select",
+          "values": [
+            {
+              "id": "custom-hierarchy",
+              "label": "커스텀 예외 계층",
+              "description": "BusinessException, TechnicalException 등 분류"
+            },
+            {
+              "id": "error-code-based",
+              "label": "에러 코드 기반",
+              "description": "ErrorCode enum으로 통합 관리"
+            },
+            {
+              "id": "standard-exceptions",
+              "label": "표준 예외 사용",
+              "description": "IllegalArgumentException 등 표준 예외"
+            }
+          ]
+        },
+        "responseFormat": {
+          "label": "에러 응답 포맷",
+          "type": "select",
+          "values": [
+            {
+              "id": "problem-detail",
+              "label": "RFC 7807 Problem Detail",
+              "description": "표준 에러 응답 포맷"
+            },
+            {
+              "id": "custom-format",
+              "label": "커스텀 포맷",
+              "description": "{code, message, data} 형태"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "logging",
+      "label": "로깅 전략",
+      "type": "object",
+      "required": false,
+      "properties": {
+        "framework": {
+          "label": "로깅 프레임워크",
+          "type": "select",
+          "values": [
+            { "id": "slf4j-logback", "label": "SLF4J + Logback" },
+            { "id": "log4j2", "label": "Log4j2" },
+            { "id": "java-util-logging", "label": "Java Util Logging" }
+          ]
+        },
+        "format": {
+          "label": "로그 포맷",
+          "type": "select",
+          "values": [
+            { "id": "json", "label": "JSON 포맷", "description": "ELK 스택 연동에 적합" },
+            { "id": "text", "label": "텍스트 포맷", "description": "사람이 읽기 쉬운 포맷" }
+          ]
+        },
+        "includeFields": {
+          "label": "포함 필드",
+          "type": "multiSelect",
+          "values": [
+            { "id": "traceId", "label": "Trace ID" },
+            { "id": "userId", "label": "User ID" },
+            { "id": "requestId", "label": "Request ID" },
+            { "id": "duration", "label": "Duration" }
+          ]
+        }
+      }
+    },
+    {
+      "id": "documentation",
+      "label": "문서화",
+      "type": "object",
+      "required": false,
+      "properties": {
+        "apiDoc": {
+          "label": "API 문서화",
+          "type": "select",
+          "values": [
+            { "id": "springdoc-openapi", "label": "SpringDoc OpenAPI (Swagger)" },
+            { "id": "spring-restdocs", "label": "Spring REST Docs" },
+            { "id": "none", "label": "없음" }
+          ]
+        },
+        "codeComment": {
+          "label": "코드 주석",
+          "type": "select",
+          "values": [
+            { "id": "javadoc-public", "label": "Public API만 Javadoc" },
+            { "id": "javadoc-all", "label": "모든 메서드 Javadoc" },
+            { "id": "minimal", "label": "최소한의 주석" }
+          ]
+        }
+      }
+    },
+    {
+      "id": "nullHandling",
+      "label": "Null 처리 전략",
+      "type": "select",
+      "required": false,
+      "values": [
+        {
+          "id": "optional",
+          "label": "Optional 사용",
+          "description": "반환값에 Optional<T> 사용"
+        },
+        {
+          "id": "nullable-annotation",
+          "label": "@Nullable/@NonNull",
+          "description": "어노테이션으로 명시"
+        },
+        {
+          "id": "kotlin-nullability",
+          "label": "Kotlin Nullability",
+          "description": "Kotlin의 ? 연산자 활용"
+        }
+      ]
+    }
+  ]
+}

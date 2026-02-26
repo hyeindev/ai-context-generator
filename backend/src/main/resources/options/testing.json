@@ -1,0 +1,197 @@
+{
+  "id": "testing",
+  "title": "테스트 설정",
+  "description": "테스트 프레임워크, 네이밍 컨벤션, 커버리지 기준을 설정합니다.",
+  "options": [
+    {
+      "id": "testFramework",
+      "label": "테스트 프레임워크",
+      "type": "multiSelect",
+      "required": true,
+      "dependsOn": {
+        "field": "language",
+        "mapping": {
+          "java": ["junit5", "testng"],
+          "kotlin": ["junit5", "kotest"],
+          "typescript": ["jest", "vitest", "mocha"],
+          "python": ["pytest", "unittest"],
+          "go": ["go-test", "testify"],
+          "rust": ["rust-test", "proptest"]
+        }
+      },
+      "values": [
+        { "id": "junit5", "label": "JUnit 5", "description": "Java 표준 테스트 프레임워크" },
+        { "id": "testng", "label": "TestNG", "description": "고급 테스트 프레임워크" },
+        { "id": "kotest", "label": "Kotest", "description": "Kotlin 네이티브 테스트" },
+        { "id": "jest", "label": "Jest", "description": "JavaScript 테스트 프레임워크" },
+        { "id": "vitest", "label": "Vitest", "description": "Vite 네이티브 테스트" },
+        { "id": "mocha", "label": "Mocha", "description": "유연한 JS 테스트 프레임워크" },
+        { "id": "pytest", "label": "pytest", "description": "Python 테스트 프레임워크" },
+        { "id": "unittest", "label": "unittest", "description": "Python 표준 테스트" },
+        { "id": "go-test", "label": "Go Test", "description": "Go 내장 테스트" },
+        { "id": "testify", "label": "Testify", "description": "Go 테스트 확장" },
+        { "id": "rust-test", "label": "Rust Test", "description": "Rust 내장 테스트" },
+        { "id": "proptest", "label": "Proptest", "description": "Rust 속성 기반 테스트" }
+      ]
+    },
+    {
+      "id": "mockFramework",
+      "label": "Mocking 프레임워크",
+      "type": "select",
+      "required": false,
+      "dependsOn": {
+        "field": "language",
+        "mapping": {
+          "java": ["mockito", "mockk"],
+          "kotlin": ["mockk", "mockito"],
+          "typescript": ["jest-mock", "sinon"],
+          "python": ["unittest-mock", "pytest-mock"]
+        }
+      },
+      "values": [
+        { "id": "mockito", "label": "Mockito", "description": "Java 표준 Mocking" },
+        { "id": "mockk", "label": "MockK", "description": "Kotlin 네이티브 Mocking" },
+        { "id": "jest-mock", "label": "Jest Mock", "description": "Jest 내장 Mocking" },
+        { "id": "sinon", "label": "Sinon", "description": "JS Standalone Mocking" },
+        { "id": "unittest-mock", "label": "unittest.mock", "description": "Python 표준 Mocking" },
+        { "id": "pytest-mock", "label": "pytest-mock", "description": "pytest Mocking 플러그인" }
+      ]
+    },
+    {
+      "id": "testNaming",
+      "label": "테스트 네이밍 컨벤션",
+      "type": "select",
+      "required": true,
+      "values": [
+        {
+          "id": "korean-descriptive",
+          "label": "한글 서술형",
+          "description": "사용자가_로그인하면_토큰을_반환한다()",
+          "example": "@Test void 사용자가_로그인하면_토큰을_반환한다()"
+        },
+        {
+          "id": "given-when-then",
+          "label": "Given-When-Then",
+          "description": "givenUser_whenLogin_thenReturnToken()",
+          "example": "@Test void givenValidUser_whenLogin_thenReturnToken()"
+        },
+        {
+          "id": "should-when",
+          "label": "Should-When",
+          "description": "shouldReturnToken_whenUserLogin()",
+          "example": "@Test void shouldReturnToken_whenValidUserLogin()"
+        },
+        {
+          "id": "method-scenario-expected",
+          "label": "Method_Scenario_Expected",
+          "description": "login_validCredentials_returnsToken()",
+          "example": "@Test void login_validCredentials_returnsToken()"
+        },
+        {
+          "id": "display-name",
+          "label": "@DisplayName 활용",
+          "description": "@DisplayName(\"사용자 로그인 시 토큰 반환\")",
+          "example": "@DisplayName(\"사용자 로그인 시 토큰 반환\") @Test void test()"
+        }
+      ]
+    },
+    {
+      "id": "testTypes",
+      "label": "테스트 유형",
+      "type": "multiSelect",
+      "required": true,
+      "values": [
+        {
+          "id": "unit",
+          "label": "단위 테스트",
+          "description": "개별 클래스/메서드 테스트"
+        },
+        {
+          "id": "integration",
+          "label": "통합 테스트",
+          "description": "컴포넌트 간 연동 테스트"
+        },
+        {
+          "id": "slice",
+          "label": "슬라이스 테스트",
+          "description": "@WebMvcTest, @DataJpaTest 등"
+        },
+        {
+          "id": "e2e",
+          "label": "E2E 테스트",
+          "description": "전체 시스템 테스트"
+        },
+        {
+          "id": "contract",
+          "label": "계약 테스트",
+          "description": "API 계약 검증 테스트"
+        }
+      ]
+    },
+    {
+      "id": "testCoverage",
+      "label": "테스트 커버리지",
+      "type": "object",
+      "required": false,
+      "properties": {
+        "tool": {
+          "label": "커버리지 도구",
+          "type": "select",
+          "values": [
+            { "id": "jacoco", "label": "JaCoCo" },
+            { "id": "istanbul", "label": "Istanbul/nyc" },
+            { "id": "coverage-py", "label": "Coverage.py" }
+          ]
+        },
+        "minimumLine": {
+          "label": "최소 라인 커버리지",
+          "type": "select",
+          "values": [
+            { "id": "80", "label": "80%" },
+            { "id": "70", "label": "70%" },
+            { "id": "60", "label": "60%" },
+            { "id": "none", "label": "제한 없음" }
+          ]
+        },
+        "minimumBranch": {
+          "label": "최소 브랜치 커버리지",
+          "type": "select",
+          "values": [
+            { "id": "80", "label": "80%" },
+            { "id": "70", "label": "70%" },
+            { "id": "60", "label": "60%" },
+            { "id": "none", "label": "제한 없음" }
+          ]
+        }
+      }
+    },
+    {
+      "id": "testDataStrategy",
+      "label": "테스트 데이터 전략",
+      "type": "select",
+      "required": false,
+      "values": [
+        {
+          "id": "fixture",
+          "label": "Fixture 패턴",
+          "description": "테스트용 고정 데이터 클래스"
+        },
+        {
+          "id": "builder",
+          "label": "Test Builder 패턴",
+          "description": "유연한 테스트 데이터 생성"
+        },
+        {
+          "id": "factory",
+          "label": "Factory 패턴",
+          "description": "팩토리로 테스트 데이터 생성"
+        },
+        {
+          "id": "faker",
+          "label": "Faker 라이브러리",
+          "description": "무작위 테스트 데이터 생성"
+        }
+      ]
+    }
+  ]
+}

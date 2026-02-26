@@ -1,0 +1,132 @@
+{
+  "id": "project",
+  "title": "프로젝트 기본 설정",
+  "description": "프로젝트 타입, 언어, 프레임워크 등 기본 정보를 설정합니다.",
+  "options": [
+    {
+      "id": "projectType",
+      "label": "프로젝트 타입",
+      "type": "select",
+      "required": true,
+      "values": [
+        { "id": "backend", "label": "Backend", "description": "서버 사이드 애플리케이션" },
+        { "id": "frontend", "label": "Frontend", "description": "클라이언트 사이드 애플리케이션" },
+        { "id": "fullstack", "label": "Fullstack", "description": "프론트엔드 + 백엔드" },
+        { "id": "library", "label": "Library", "description": "재사용 가능한 라이브러리" },
+        { "id": "cli", "label": "CLI Tool", "description": "커맨드라인 도구" }
+      ]
+    },
+    {
+      "id": "language",
+      "label": "프로그래밍 언어",
+      "type": "select",
+      "required": true,
+      "dependsOn": {
+        "field": "projectType",
+        "mapping": {
+          "backend": ["java", "kotlin", "python", "go", "rust", "nodejs"],
+          "frontend": ["typescript", "javascript"],
+          "fullstack": ["typescript", "javascript", "java", "kotlin", "python"],
+          "library": ["java", "kotlin", "typescript", "python", "go", "rust"],
+          "cli": ["go", "rust", "python", "nodejs"]
+        }
+      },
+      "values": [
+        { "id": "java", "label": "Java", "description": "Java 17+" },
+        { "id": "kotlin", "label": "Kotlin", "description": "Kotlin 1.9+" },
+        { "id": "typescript", "label": "TypeScript", "description": "TypeScript 5+" },
+        { "id": "javascript", "label": "JavaScript", "description": "ES6+" },
+        { "id": "python", "label": "Python", "description": "Python 3.10+" },
+        { "id": "go", "label": "Go", "description": "Go 1.21+" },
+        { "id": "rust", "label": "Rust", "description": "Rust 2021 Edition" },
+        { "id": "nodejs", "label": "Node.js", "description": "Node.js 20+" }
+      ]
+    },
+    {
+      "id": "framework",
+      "label": "프레임워크",
+      "type": "select",
+      "required": true,
+      "dependsOn": {
+        "field": "language",
+        "mapping": {
+          "java": ["spring-boot", "quarkus", "micronaut"],
+          "kotlin": ["spring-boot", "ktor"],
+          "typescript": ["nextjs", "nestjs", "express", "react", "vue"],
+          "javascript": ["react", "vue", "express", "nextjs"],
+          "python": ["fastapi", "django", "flask"],
+          "go": ["gin", "echo", "fiber"],
+          "rust": ["actix", "axum", "rocket"],
+          "nodejs": ["express", "nestjs", "fastify"]
+        }
+      },
+      "values": [
+        { "id": "spring-boot", "label": "Spring Boot", "description": "Spring Boot 3.x" },
+        { "id": "quarkus", "label": "Quarkus", "description": "Supersonic Subatomic Java" },
+        { "id": "micronaut", "label": "Micronaut", "description": "경량 JVM 프레임워크" },
+        { "id": "ktor", "label": "Ktor", "description": "Kotlin 비동기 프레임워크" },
+        { "id": "nextjs", "label": "Next.js", "description": "React 풀스택 프레임워크" },
+        { "id": "nestjs", "label": "NestJS", "description": "Node.js 엔터프라이즈 프레임워크" },
+        { "id": "express", "label": "Express", "description": "Node.js 미니멀 프레임워크" },
+        { "id": "fastify", "label": "Fastify", "description": "고성능 Node.js 프레임워크" },
+        { "id": "react", "label": "React", "description": "UI 라이브러리" },
+        { "id": "vue", "label": "Vue.js", "description": "Progressive 프레임워크" },
+        { "id": "fastapi", "label": "FastAPI", "description": "Python 고성능 API 프레임워크" },
+        { "id": "django", "label": "Django", "description": "Python 풀스택 프레임워크" },
+        { "id": "flask", "label": "Flask", "description": "Python 마이크로 프레임워크" },
+        { "id": "gin", "label": "Gin", "description": "Go HTTP 웹 프레임워크" },
+        { "id": "echo", "label": "Echo", "description": "Go 고성능 프레임워크" },
+        { "id": "fiber", "label": "Fiber", "description": "Go Express 스타일 프레임워크" },
+        { "id": "actix", "label": "Actix Web", "description": "Rust 고성능 프레임워크" },
+        { "id": "axum", "label": "Axum", "description": "Rust 모듈러 프레임워크" },
+        { "id": "rocket", "label": "Rocket", "description": "Rust 타입 안전 프레임워크" }
+      ]
+    },
+    {
+      "id": "buildTool",
+      "label": "빌드 도구",
+      "type": "select",
+      "required": true,
+      "dependsOn": {
+        "field": "language",
+        "mapping": {
+          "java": ["gradle", "maven"],
+          "kotlin": ["gradle", "maven"],
+          "typescript": ["npm", "yarn", "pnpm"],
+          "javascript": ["npm", "yarn", "pnpm"],
+          "python": ["poetry", "pip", "pipenv"],
+          "go": ["go-modules"],
+          "rust": ["cargo"],
+          "nodejs": ["npm", "yarn", "pnpm"]
+        }
+      },
+      "values": [
+        { "id": "gradle", "label": "Gradle", "description": "Gradle (Kotlin DSL 권장)" },
+        { "id": "maven", "label": "Maven", "description": "Apache Maven" },
+        { "id": "npm", "label": "npm", "description": "Node Package Manager" },
+        { "id": "yarn", "label": "Yarn", "description": "Yarn Package Manager" },
+        { "id": "pnpm", "label": "pnpm", "description": "Performant npm" },
+        { "id": "poetry", "label": "Poetry", "description": "Python 의존성 관리" },
+        { "id": "pip", "label": "pip", "description": "Python 기본 패키지 관리자" },
+        { "id": "pipenv", "label": "Pipenv", "description": "Python 가상환경 + 패키지 관리" },
+        { "id": "go-modules", "label": "Go Modules", "description": "Go 공식 의존성 관리" },
+        { "id": "cargo", "label": "Cargo", "description": "Rust 공식 빌드 도구" }
+      ]
+    },
+    {
+      "id": "javaVersion",
+      "label": "Java 버전",
+      "type": "select",
+      "required": false,
+      "dependsOn": {
+        "field": "language",
+        "showWhen": ["java", "kotlin"]
+      },
+      "values": [
+        { "id": "17", "label": "Java 17", "description": "LTS (권장)" },
+        { "id": "21", "label": "Java 21", "description": "최신 LTS" },
+        { "id": "11", "label": "Java 11", "description": "레거시 LTS" }
+      ]
+    }
+  ]
+}
