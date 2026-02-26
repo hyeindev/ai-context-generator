@@ -31,9 +31,16 @@
     annotationProcessor 'jakarta.annotation:jakarta.annotation-api'
     annotationProcessor 'jakarta.persistence:jakarta.persistence-api'
     ```
-  - 복잡한 동적 쿼리는 QueryDSL로 구현할 것
   - CustomRepository 구현 시 JPAQueryFactory 사용할 것
 {{/queryDsl}}
+{{#complexQueryThreshold}}
+- **복잡한 쿼리 기준**: {{complexQueryThreshold}}
+  - 이 조건을 만족하면 QueryDSL 또는 Native Query 사용할 것
+  - 3-joins: 3개 이상 테이블 JOIN 시
+  - dynamic-conditions: 동적 WHERE 조건 3개 이상
+  - subquery: 서브쿼리가 필요한 경우
+  - aggregation: GROUP BY, HAVING 등 집계 함수 사용 시
+{{/complexQueryThreshold}}
 {{#repositoryStrategy}}- **Repository Strategy**: {{repositoryStrategy}}{{/repositoryStrategy}}
 {{#transactionStrategy}}- **Transaction Strategy**: {{transactionStrategy}}{{/transactionStrategy}}
 {{#cacheStrategy}}- **Cache Strategy**: {{#cacheStrategy}}{{.}} {{/cacheStrategy}}{{/cacheStrategy}}
