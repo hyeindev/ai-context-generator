@@ -61,6 +61,7 @@ export interface CategoryItem {
   title: string;
   description: string;
   icon: string;
+  color: string;
   order?: number;
   recommended?: boolean;
 }
@@ -80,6 +81,7 @@ export interface Preset {
   color: string;
   categories: string[];
   values: Record<string, Record<string, any>>;
+  disabled?: boolean;
 }
 
 /** 프리셋 데이터 타입 */

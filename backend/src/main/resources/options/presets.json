@@ -188,7 +188,8 @@
       "name": "Next.js 풀스택",
       "description": "Next.js App Router 기반 풀스택",
       "icon": "Rocket",
-      "color": "from-gray-600 to-gray-800",
+      "color": "from-gray-500 to-gray-700",
+      "disabled": true,
       "categories": ["project", "architecture", "aiTool", "codeStyle", "testing", "git"],
       "values": {
         "project": {
@@ -236,6 +237,7 @@
       "description": "Kotlin 기반 Spring Boot 프로젝트",
       "icon": "Palette",
       "color": "from-orange-400 to-pink-500",
+      "disabled": true,
       "categories": ["project", "architecture", "aiTool", "dataLayer", "codeStyle", "testing"],
       "values": {
         "project": {
@@ -289,7 +291,7 @@
       "name": "직접 설정",
       "description": "모든 옵션을 직접 선택",
       "icon": "Settings",
-      "color": "from-gray-400 to-gray-500",
+      "color": "from-gray-400 to-gray-600",
       "categories": [],
       "values": {}
     }

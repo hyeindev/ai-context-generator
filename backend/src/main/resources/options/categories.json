@@ -5,6 +5,7 @@
       "title": "프로젝트 기본",
       "description": "언어, 프레임워크, 빌드 도구",
       "icon": "Package",
+      "color": "from-blue-400 to-blue-600",
       "order": 1
     },
     {
@@ -12,6 +13,7 @@
       "title": "아키텍처",
       "description": "프로젝트 구조 및 패턴",
       "icon": "Layers",
+      "color": "from-purple-400 to-purple-600",
       "order": 2
     },
     {
@@ -19,6 +21,7 @@
       "title": "AI 응답 설정",
       "description": "응답 언어, 스타일, 제한사항",
       "icon": "Bot",
+      "color": "from-emerald-400 to-emerald-600",
       "order": 3
     }
   ],
@@ -28,6 +31,7 @@
       "title": "데이터 레이어",
       "description": "DB, ORM, 쿼리 전략",
       "icon": "Database",
+      "color": "from-cyan-400 to-cyan-600",
       "recommended": true
     },
     {
@@ -35,6 +39,7 @@
       "title": "코드 스타일",
       "description": "네이밍 컨벤션, 패키지 구조",
       "icon": "Code",
+      "color": "from-violet-400 to-violet-600",
       "recommended": true
     },
     {
@@ -42,6 +47,7 @@
       "title": "테스트",
       "description": "테스트 프레임워크, 네이밍",
       "icon": "FlaskConical",
+      "color": "from-pink-400 to-pink-600",
       "recommended": true
     },
     {
@@ -49,6 +55,7 @@
       "title": "Git",
       "description": "브랜치 전략, 커밋 컨벤션",
       "icon": "GitBranch",
+      "color": "from-orange-400 to-orange-600",
       "recommended": false
     },
     {
@@ -56,6 +63,7 @@
       "title": "보안",
       "description": "인증, 권한, 보안 정책",
       "icon": "Shield",
+      "color": "from-red-400 to-red-600",
       "recommended": false
     },
     {
@@ -63,6 +71,7 @@
       "title": "예외 처리",
       "description": "에러 코드, 예외 계층",
       "icon": "AlertTriangle",
+      "color": "from-amber-400 to-amber-600",
       "recommended": false
     },
     {
@@ -70,6 +79,7 @@
       "title": "API 설계",
       "description": "응답 포맷, 페이지네이션",
       "icon": "Plug",
+      "color": "from-teal-400 to-teal-600",
       "recommended": false
     },
     {
@@ -77,6 +87,7 @@
       "title": "도메인 설계",
       "description": "엔티티, VO, 연관관계",
       "icon": "Target",
+      "color": "from-indigo-400 to-indigo-600",
       "recommended": false
     }
   ]

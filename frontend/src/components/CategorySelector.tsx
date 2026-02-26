@@ -89,16 +89,14 @@ export default function CategorySelector({
                 </div>
               )}
 
-              {/* 추천 배지 */}
-              {category.recommended && (
-                <span className="absolute top-2 left-2 px-2 py-0.5 bg-amber-100 text-amber-700 text-xs font-medium rounded-full">
-                  추천
-                </span>
-              )}
 
               {/* 아이콘 */}
               <div className="mb-2 mt-2">
-                <CategoryIcon name={category.icon} />
+                <CategoryIcon
+                  name={category.icon}
+                  variant="gradient"
+                  gradientClass={category.color}
+                />
               </div>
 
               {/* 정보 */}

@@ -23,24 +23,34 @@ export default function PresetSelector({ presets, selectedPreset, onSelect }: Pr
         {presets.map((preset) => {
           const isSelected = selectedPreset === preset.id;
           const isCustom = preset.id === "custom";
+          const isDisabled = preset.disabled;
 
           return (
             <button
               key={preset.id}
-              onClick={() => onSelect(preset)}
+              onClick={() => !isDisabled && onSelect(preset)}
+              disabled={isDisabled}
               className={clsx(
-                "relative p-6 rounded-xl border-2 text-left transition-all duration-200 hover:scale-[1.02]",
+                "relative p-6 rounded-xl border-2 text-left transition-all duration-200",
                 {
-                  "border-primary-500 bg-primary-50 shadow-lg shadow-primary-500/10": isSelected,
-                  "border-gray-200 hover:border-gray-300 hover:shadow-md": !isSelected,
-                  "border-dashed": isCustom,
+                  "border-primary-500 bg-primary-50 shadow-lg shadow-primary-500/10": isSelected && !isDisabled,
+                  "border-gray-200 hover:border-gray-300 hover:shadow-md hover:scale-[1.02]": !isSelected && !isDisabled,
+                  "border-dashed": isCustom && !isDisabled,
+                  "border-gray-200 bg-gray-50 opacity-50 cursor-not-allowed": isDisabled,
                 }
               )}
             >
               {/* 선택 체크 */}
-              {isSelected && (
+              {isSelected && !isDisabled && (
                 <div className="absolute top-3 right-3 w-6 h-6 rounded-full bg-primary-500 flex items-center justify-center">
                   <Check className="w-4 h-4 text-white" />
+                </div>
+              )}
+
+              {/* Coming Soon 배지 */}
+              {isDisabled && (
+                <div className="absolute top-3 right-3 px-2 py-1 bg-gray-200 text-gray-500 text-xs font-medium rounded-full">
+                  Coming Soon
                 </div>
               )}
 
@@ -50,16 +60,16 @@ export default function PresetSelector({ presets, selectedPreset, onSelect }: Pr
                   name={preset.icon}
                   size="lg"
                   variant="gradient"
-                  gradientClass={preset.color}
+                  gradientClass={isDisabled ? "from-gray-300 to-gray-400" : preset.color}
                 />
               </div>
 
               {/* 정보 */}
-              <h3 className="font-semibold text-gray-900">{preset.name}</h3>
-              <p className="text-sm text-gray-500 mt-1">{preset.description}</p>
+              <h3 className={clsx("font-semibold", isDisabled ? "text-gray-400" : "text-gray-900")}>{preset.name}</h3>
+              <p className={clsx("text-sm mt-1", isDisabled ? "text-gray-400" : "text-gray-500")}>{preset.description}</p>
 
               {/* 포함 카테고리 */}
-              {preset.categories.length > 0 && (
+              {preset.categories.length > 0 && !isDisabled && (
                 <div className="mt-3 flex flex-wrap gap-1">
                   {preset.categories.slice(0, 4).map((cat) => (
                     <span

@@ -6,6 +6,24 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  safelist: [
+    // Category & Preset gradient colors (loaded from backend JSON)
+    "from-blue-400", "to-blue-600",
+    "from-purple-400", "to-purple-600",
+    "from-emerald-400", "to-emerald-600",
+    "from-cyan-400", "to-cyan-600",
+    "from-violet-400", "to-violet-600",
+    "from-pink-400", "to-pink-600",
+    "from-orange-400", "to-orange-600",
+    "from-red-400", "to-red-600",
+    "from-amber-400", "to-amber-600",
+    "from-teal-400", "to-teal-600",
+    "from-indigo-400", "to-indigo-600",
+    "from-green-400", "to-green-600",
+    "from-gray-400", "to-gray-600",
+    "from-gray-500", "to-gray-700",
+    "to-pink-500",
+  ],
   darkMode: "class",
   theme: {
     extend: {
