@@ -317,6 +317,7 @@ export default function Home() {
         <StepIndicator
           steps={steps.map((s, i) => ({ id: i + 1, title: s.title, description: s.description }))}
           currentStep={currentStepIndex + 1}
+          requiredCount={2 + requiredCategoryIds.length + 1} // 도구선택 + 프리셋 + 필수카테고리들 + 추가선택
         />
 
         {/* 메인 컨텐츠 */}

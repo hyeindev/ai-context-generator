@@ -1,10 +1,25 @@
+# Project Rules
+
 {{#project}}
-# {{framework}} ({{language}}) Project
+## Project
+- {{framework}} ({{language}})
+- Build: {{buildTool}}
 {{/project}}
 
 {{#architecture}}
-Architecture: {{architecturePattern}}
+## Architecture
+- {{architecturePattern}}
+{{#moduleStructure}}- {{moduleStructure}}{{/moduleStructure}}
+{{#apiStyle}}- {{.}} {{/apiStyle}}
 {{/architecture}}
+
+{{#dataLayer}}
+## Data
+- {{#database}}{{.}} {{/database}}
+- {{orm}}
+{{#complexQueryStrategy}}- {{complexQueryStrategy}}{{/complexQueryStrategy}}
+{{#useQueryDsl}}- QueryDSL 사용{{/useQueryDsl}}
+{{/dataLayer}}
 
 {{#codeStyle}}
 ## Style Guide
@@ -13,21 +28,30 @@ Architecture: {{architecturePattern}}
 - {{methodName}} for method names
 - {{variableName}} for variable names
 {{/namingConvention}}
+{{#packageStructure}}- {{packageStructure}} package structure{{/packageStructure}}
 {{/codeStyle}}
 
 {{#testing}}
 ## Testing
-Framework: {{#testFramework}}{{.}}{{/testFramework}}
-Style: {{testNaming}}
+{{#testFramework}}- {{.}}
+{{/testFramework}}
+- {{testNaming}} naming style
 {{/testing}}
+
+{{#git}}
+## Git
+{{#commitConvention}}- {{commitConvention}}{{/commitConvention}}
+{{#commitLanguage}}- {{commitLanguage}}{{/commitLanguage}}
+{{/git}}
 
 {{#aiTool}}
 ## AI Settings
-Response: {{responseLanguage}}
+- Response: {{responseLanguage}}
+{{#responseStyle}}- {{responseStyle}}{{/responseStyle}}
+
 {{#restrictions}}
-Restrictions:
-{{#restrictions}}
-- {{.}}
-{{/restrictions}}
+{{#-first}}
+### Restrictions:
+{{/-first}}- {{.}}
 {{/restrictions}}
 {{/aiTool}}

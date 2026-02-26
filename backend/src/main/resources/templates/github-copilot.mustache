@@ -1,38 +1,86 @@
-{{#project}}
-# {{framework}} Project Guidelines
+# Project Guidelines
 
-Language: {{language}}
-Build: {{buildTool}}
+{{#project}}
+## Project Information
+- **Type**: {{projectType}}
+- **Language**: {{language}}{{#javaVersion}} ({{javaVersion}}){{/javaVersion}}
+- **Framework**: {{framework}}
+- **Build Tool**: {{buildTool}}
 {{/project}}
 
 {{#architecture}}
 ## Architecture
-Pattern: {{architecturePattern}}
+- **Pattern**: {{architecturePattern}}
+- **Module Structure**: {{moduleStructure}}
+{{#apiStyle}}- **API Style**: {{.}} {{/apiStyle}}
+{{#dtoStrategy}}- **DTO Strategy**: {{dtoStrategy}}{{/dtoStrategy}}
 {{/architecture}}
 
+{{#dataLayer}}
+## Data Layer
+- **Database**: {{#database}}{{.}} {{/database}}
+- **ORM**: {{orm}}
+{{#complexQueryStrategy}}- **Complex Query Strategy**: {{complexQueryStrategy}}{{/complexQueryStrategy}}
+{{#useQueryDsl}}- QueryDSL 사용 시 build.gradle에 의존성 추가 필수:
+  ```groovy
+  implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
+  annotationProcessor 'com.querydsl:querydsl-apt:5.0.0:jakarta'
+  annotationProcessor 'jakarta.annotation:jakarta.annotation-api'
+  annotationProcessor 'jakarta.persistence:jakarta.persistence-api'
+  ```
+{{/useQueryDsl}}{{#complexQueryThreshold}}{{#-first}}- **복잡한 쿼리 기준**:{{/-first}}
+  - {{.}}{{/complexQueryThreshold}}
+{{#repositoryStrategy}}- **Repository Strategy**: {{repositoryStrategy}}{{/repositoryStrategy}}
+{{#transactionStrategy}}- **Transaction Strategy**: {{transactionStrategy}}{{/transactionStrategy}}
+{{/dataLayer}}
+
 {{#codeStyle}}
-## Conventions
-{{#namingConvention}}
-Classes: {{className}}
-Methods: {{methodName}}
-Variables: {{variableName}}
-{{/namingConvention}}
+## Code Style
+
+### Naming Convention
+{{#namingConvention}}{{#className}}- Class: {{className}}{{/className}}
+{{#methodName}}- Method: {{methodName}}{{/methodName}}
+{{#variableName}}- Variable: {{variableName}}{{/variableName}}
+{{#constantName}}- Constant: {{constantName}}{{/constantName}}{{/namingConvention}}
+{{#packageStructure}}- Package Structure: {{packageStructure}}{{/packageStructure}}
+{{#errorHandling}}
+### Error Handling
+{{#exceptionStrategy}}- Exception Strategy: {{exceptionStrategy}}{{/exceptionStrategy}}
+{{#responseFormat}}- Response Format: {{responseFormat}}{{/responseFormat}}{{/errorHandling}}
+{{#nullHandling}}- Null Handling: {{nullHandling}}{{/nullHandling}}
 {{/codeStyle}}
 
 {{#testing}}
 ## Testing
-{{#testFramework}}Use {{.}} for testing.{{/testFramework}}
-Naming convention: {{testNaming}}
+{{#testFramework}}- Framework: {{.}} {{/testFramework}}
+{{#mockFramework}}- Mock: {{mockFramework}}{{/mockFramework}}
+- Naming: {{testNaming}}
+{{#testTypes}}- Test Types: {{#testTypes}}{{.}} {{/testTypes}}{{/testTypes}}
+{{#testDataStrategy}}- Test Data Strategy: {{testDataStrategy}}{{/testDataStrategy}}
 {{/testing}}
 
-{{#aiTool}}
-## Response Guidelines
-{{#responseLanguage}}Language: {{responseLanguage}}{{/responseLanguage}}
+{{#git}}
+## Git Conventions
+{{#branchStrategy}}- Branch Strategy: {{branchStrategy}}{{/branchStrategy}}
+{{#branchNaming}}- Branch Naming: {{branchNaming}}{{/branchNaming}}
+{{#commitConvention}}- Commit Style: {{commitConvention}}{{/commitConvention}}
+{{#commitLanguage}}- Commit Language: {{commitLanguage}}{{/commitLanguage}}
+{{#mergeStrategy}}- Merge Strategy: {{mergeStrategy}}{{/mergeStrategy}}
+{{/git}}
 
-{{#restrictions}}
-Avoid:
-{{#restrictions}}
-- {{.}}
-{{/restrictions}}
-{{/restrictions}}
+{{#aiTool}}
+## AI Assistant Instructions
+- Response Language: {{responseLanguage}}
+{{#responseStyle}}- Response Style: {{responseStyle}}{{/responseStyle}}
+{{#codeGeneration}}
+### Code Generation
+{{#includeComments}}- Comments: {{includeComments}}{{/includeComments}}
+{{#includeTests}}- Tests: {{includeTests}}{{/includeTests}}
+{{#preferredPatterns}}- Preferred Patterns: {{#preferredPatterns}}{{.}} {{/preferredPatterns}}{{/preferredPatterns}}{{/codeGeneration}}
+{{#restrictions}}{{#-first}}
+### DO NOT:{{/-first}}
+- {{.}}{{/restrictions}}
+{{#contextPriority}}
+### Priority Order
+{{#priorities}}- {{.}}{{/priorities}}{{/contextPriority}}
 {{/aiTool}}

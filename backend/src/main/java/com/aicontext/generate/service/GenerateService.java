@@ -39,7 +39,17 @@ public class GenerateService {
      * @return 생성된 파일 목록
      */
     public GenerateResponse generate(GenerateRequest request) {
+        log.info("[Generate] Request received: targetTools={}", request.getTargetTools());
+        log.debug("[Generate] project={}", request.getProject());
+        log.debug("[Generate] architecture={}", request.getArchitecture());
+        log.debug("[Generate] dataLayer={}", request.getDataLayer());
+        log.debug("[Generate] codeStyle={}", request.getCodeStyle());
+        log.debug("[Generate] testing={}", request.getTesting());
+        log.debug("[Generate] git={}", request.getGit());
+        log.debug("[Generate] aiTool={}", request.getAiTool());
+
         Map<String, Object> context = buildContext(request);
+        log.debug("[Generate] Built context: {}", context);
         List<GeneratedFile> files = new ArrayList<>();
 
         for (String toolId : request.getTargetTools()) {
@@ -76,7 +86,15 @@ public class GenerateService {
             context.put("architecture", request.getArchitecture());
         }
         if (request.getDataLayer() != null) {
-            context.put("dataLayer", request.getDataLayer());
+            Map<String, Object> dataLayer = new HashMap<>(request.getDataLayer());
+            // QueryDSL 사용 여부 플래그 추가
+            Object queryStrategy = dataLayer.get("complexQueryStrategy");
+            if (queryStrategy != null) {
+                String strategy = queryStrategy.toString();
+                dataLayer.put("useQueryDsl", strategy.contains("querydsl"));
+                dataLayer.put("useNativeQuery", strategy.contains("native"));
+            }
+            context.put("dataLayer", dataLayer);
         }
         if (request.getCodeStyle() != null) {
             context.put("codeStyle", request.getCodeStyle());

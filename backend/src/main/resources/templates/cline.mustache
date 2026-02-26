@@ -1,15 +1,32 @@
-{{#project}}
 # Project Context
+
+{{#project}}
+## Project Information
+- Type: {{projectType}}
+- Language: {{language}}{{#javaVersion}} ({{javaVersion}}){{/javaVersion}}
 - Framework: {{framework}}
-- Language: {{language}}
-- Build: {{buildTool}}
+- Build Tool: {{buildTool}}
 {{/project}}
 
 {{#architecture}}
 ## Architecture
 - Pattern: {{architecturePattern}}
-- Structure: {{moduleStructure}}
+- Module Structure: {{moduleStructure}}
+{{#apiStyle}}- API Style: {{.}} {{/apiStyle}}
+{{#dtoStrategy}}- DTO Strategy: {{dtoStrategy}}{{/dtoStrategy}}
 {{/architecture}}
+
+{{#dataLayer}}
+## Data Layer
+- Database: {{#database}}{{.}} {{/database}}
+- ORM: {{orm}}
+{{#complexQueryStrategy}}- Complex Query: {{complexQueryStrategy}}{{/complexQueryStrategy}}
+{{#useQueryDsl}}
+- QueryDSL dependencies required in build.gradle
+{{/useQueryDsl}}
+{{#repositoryStrategy}}- Repository: {{repositoryStrategy}}{{/repositoryStrategy}}
+{{#transactionStrategy}}- Transaction: {{transactionStrategy}}{{/transactionStrategy}}
+{{/dataLayer}}
 
 {{#codeStyle}}
 ## Code Conventions
@@ -18,18 +35,34 @@
 - Methods: {{methodName}}
 - Variables: {{variableName}}
 {{/namingConvention}}
+{{#packageStructure}}- Package: {{packageStructure}}{{/packageStructure}}
+{{#nullHandling}}- Null Handling: {{nullHandling}}{{/nullHandling}}
 {{/codeStyle}}
 
 {{#testing}}
 ## Testing
-- Framework: {{#testFramework}}{{.}} {{/testFramework}}
+{{#testFramework}}- Framework: {{.}}
+{{/testFramework}}
+{{#mockFramework}}- Mock: {{mockFramework}}{{/mockFramework}}
 - Naming: {{testNaming}}
+{{#testTypes}}{{#-first}}- Types: {{/-first}}{{.}} {{/testTypes}}
 {{/testing}}
+
+{{#git}}
+## Git
+{{#branchStrategy}}- Branch: {{branchStrategy}}{{/branchStrategy}}
+{{#commitConvention}}- Commit: {{commitConvention}}{{/commitConvention}}
+{{#commitLanguage}}- Language: {{commitLanguage}}{{/commitLanguage}}
+{{/git}}
 
 {{#aiTool}}
 ## Guidelines
-- Language: {{responseLanguage}}
+- Response Language: {{responseLanguage}}
+{{#responseStyle}}- Style: {{responseStyle}}{{/responseStyle}}
+
 {{#restrictions}}
-- Restrictions: {{#restrictions}}{{.}}, {{/restrictions}}
+{{#-first}}
+### Restrictions:
+{{/-first}}- {{.}}
 {{/restrictions}}
 {{/aiTool}}

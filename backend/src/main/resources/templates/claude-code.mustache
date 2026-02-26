@@ -12,19 +12,17 @@
 ## Architecture
 - **Pattern**: {{architecturePattern}}
 - **Module Structure**: {{moduleStructure}}
-{{#apiStyle}}- **API Style**: {{.}}{{/apiStyle}}
-{{#apiVersioning}}- **API Versioning**: {{apiVersioning}}{{/apiVersioning}}
-{{#dtoStrategy}}- **DTO Strategy**: {{dtoStrategy}}{{/dtoStrategy}}
-{{/architecture}}
+{{#apiStyle}}- **API Style**: {{.}} {{/apiStyle}}
+{{#apiVersioning}}- **API Versioning**: {{apiVersioning}}
+{{/apiVersioning}}{{#dtoStrategy}}- **DTO Strategy**: {{dtoStrategy}}
+{{/dtoStrategy}}{{/architecture}}
 
 {{#dataLayer}}
 ## Data Layer
 - **Database**: {{#database}}{{.}} {{/database}}
 - **ORM**: {{orm}}
-{{#complexQueryStrategy}}
-- **복잡한 쿼리 대응 방식**: {{complexQueryStrategy}}
-{{#complexQueryStrategy.querydsl}}
-  - 반드시 build.gradle에 QueryDSL 의존성 추가:
+{{#complexQueryStrategy}}- **복잡한 쿼리 대응 방식**: {{complexQueryStrategy}}
+{{/complexQueryStrategy}}{{#useQueryDsl}}  - 반드시 build.gradle에 QueryDSL 의존성 추가:
     ```groovy
     // QueryDSL
     implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
@@ -34,121 +32,93 @@
     ```
   - JPAQueryFactory를 사용하여 타입 안전한 쿼리 작성
   - Q클래스 자동 생성 활용
-{{/complexQueryStrategy.querydsl}}
-{{/complexQueryStrategy}}
-{{#complexQueryThreshold}}
-- **복잡한 쿼리 기준** (아래 조건 시 위 방식 적용):
-{{#complexQueryThreshold}}  - {{.}}
-{{/complexQueryThreshold}}
-  - 위 기준에 해당하면 Spring Data JPA 메서드 쿼리 대신 선택한 복잡한 쿼리 대응 방식 사용할 것
-{{/complexQueryThreshold}}
-{{#repositoryStrategy}}- **Repository Strategy**: {{repositoryStrategy}}{{/repositoryStrategy}}
-{{#transactionStrategy}}- **Transaction Strategy**: {{transactionStrategy}}{{/transactionStrategy}}
-{{#cacheStrategy}}- **Cache Strategy**: {{#cacheStrategy}}{{.}} {{/cacheStrategy}}{{/cacheStrategy}}
+{{/useQueryDsl}}{{#complexQueryThreshold}}{{#-first}}- **복잡한 쿼리 기준** (아래 조건 시 위 방식 적용):
+{{/-first}}  - {{.}}
+{{#-last}}  - 위 기준에 해당하면 Spring Data JPA 메서드 쿼리 대신 선택한 복잡한 쿼리 대응 방식 사용할 것
+{{/-last}}{{/complexQueryThreshold}}{{#repositoryStrategy}}- **Repository Strategy**: {{repositoryStrategy}}
+{{/repositoryStrategy}}{{#transactionStrategy}}- **Transaction Strategy**: {{transactionStrategy}}
+{{/transactionStrategy}}{{#cacheStrategy}}{{#-first}}- **Cache Strategy**: {{/-first}}{{.}} {{/cacheStrategy}}
 {{/dataLayer}}
 
 {{#codeStyle}}
 ## Code Style
 
 ### Naming Convention
-{{#namingConvention}}
-- Class: {{className}}
-- Method: {{methodName}}
-- Variable: {{variableName}}
-- Constant: {{constantName}}
-{{/namingConvention}}
-
+{{#namingConvention}}{{#className}}- Class: {{className}}
+{{/className}}{{#methodName}}- Method: {{methodName}}
+{{/methodName}}{{#variableName}}- Variable: {{variableName}}
+{{/variableName}}{{#constantName}}- Constant: {{constantName}}
+{{/constantName}}{{/namingConvention}}
 ### Package Structure
 - Style: {{packageStructure}}
-
-### Error Handling
 {{#errorHandling}}
-- Exception Strategy: {{exceptionStrategy}}
-- Response Format: {{responseFormat}}
-{{/errorHandling}}
-
-{{#logging}}
+### Error Handling
+{{#exceptionStrategy}}- Exception Strategy: {{exceptionStrategy}}
+{{/exceptionStrategy}}{{#responseFormat}}- Response Format: {{responseFormat}}
+{{/responseFormat}}{{/errorHandling}}{{#logging}}
 ### Logging
-- Framework: {{framework}}
-- Format: {{format}}
-{{/logging}}
-
-{{#nullHandling}}
+{{#framework}}- Framework: {{framework}}
+{{/framework}}{{#format}}- Format: {{format}}
+{{/format}}{{/logging}}{{#nullHandling}}
 ### Null Handling
 - Strategy: {{nullHandling}}
-{{/nullHandling}}
-{{/codeStyle}}
+{{/nullHandling}}{{/codeStyle}}
 
 {{#testing}}
 ## Testing
 
 ### Framework
 {{#testFramework}}- {{.}}
-{{/testFramework}}
-{{#mockFramework}}- Mock: {{mockFramework}}{{/mockFramework}}
-
+{{/testFramework}}{{#mockFramework}}- Mock: {{mockFramework}}
+{{/mockFramework}}
 ### Test Naming
 - Convention: {{testNaming}}
 
 ### Test Types
 {{#testTypes}}- {{.}}
 {{/testTypes}}
-
 {{#testCoverage}}
 ### Coverage
-- Tool: {{tool}}
-- Minimum Line: {{minimumLine}}
-- Minimum Branch: {{minimumBranch}}
-{{/testCoverage}}
-
-{{#testDataStrategy}}
+{{#tool}}- Tool: {{tool}}
+{{/tool}}{{#minimumLine}}- Minimum Line: {{minimumLine}}
+{{/minimumLine}}{{#minimumBranch}}- Minimum Branch: {{minimumBranch}}
+{{/minimumBranch}}{{/testCoverage}}{{#testDataStrategy}}
 ### Test Data
 - Strategy: {{testDataStrategy}}
-{{/testDataStrategy}}
-{{/testing}}
+{{/testDataStrategy}}{{/testing}}
 
 {{#git}}
 ## Git Conventions
 
 ### Branch Strategy
-- Strategy: {{branchStrategy}}
-- Naming: {{branchNaming}}
-
+{{#branchStrategy}}- Strategy: {{branchStrategy}}
+{{/branchStrategy}}{{#branchNaming}}- Naming: {{branchNaming}}
+{{/branchNaming}}
 ### Commit Convention
-- Style: {{commitConvention}}
-- Language: {{commitLanguage}}
-
-{{#mergeStrategy}}
+{{#commitConvention}}- Style: {{commitConvention}}
+{{/commitConvention}}{{#commitLanguage}}- Language: {{commitLanguage}}
+{{/commitLanguage}}{{#mergeStrategy}}
 ### Merge Strategy
 - {{mergeStrategy}}
-{{/mergeStrategy}}
-{{/git}}
+{{/mergeStrategy}}{{/git}}
 
 {{#aiTool}}
 ## AI Assistant Instructions
 
 ### Response Settings
 - Language: {{responseLanguage}}
-{{#responseStyle}}- Style: {{responseStyle}}{{/responseStyle}}
-
+{{#responseStyle}}- Style: {{responseStyle}}
+{{/responseStyle}}
 {{#codeGeneration}}
 ### Code Generation
-- Comments: {{includeComments}}
-- Tests: {{includeTests}}
-{{#preferredPatterns}}- Preferred Patterns: {{#preferredPatterns}}{{.}} {{/preferredPatterns}}{{/preferredPatterns}}
-{{/codeGeneration}}
-
-{{#restrictions}}
+{{#includeComments}}- Comments: {{includeComments}}
+{{/includeComments}}{{#includeTests}}- Tests: {{includeTests}}
+{{/includeTests}}{{#preferredPatterns}}{{#-first}}- Preferred Patterns: {{/-first}}{{.}} {{/preferredPatterns}}
+{{/codeGeneration}}{{#restrictions}}{{#-first}}
 ### Restrictions (DO NOT)
-{{#restrictions}}
-- {{.}}
+{{/-first}}- {{.}}
 {{/restrictions}}
-{{/restrictions}}
-
 {{#contextPriority}}
 ### Priority Order
-{{#priorities}}
-1. {{.}}
-{{/priorities}}
-{{/contextPriority}}
-{{/aiTool}}
+{{#priorities}}- {{.}}
+{{/priorities}}{{/contextPriority}}{{/aiTool}}

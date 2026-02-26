@@ -3,22 +3,43 @@
 
 {{#project}}
 # Project: {{framework}} ({{language}})
+# Build: {{buildTool}}
 {{/project}}
 
-{{#aiTool}}
-# Response language: {{responseLanguage}}
-{{/aiTool}}
+{{#architecture}}
+# Architecture: {{architecturePattern}}
+{{/architecture}}
 
-# Convention notes:
+{{#dataLayer}}
+# Data Layer
+# - ORM: {{orm}}
+{{#complexQueryStrategy}}# - Query Strategy: {{complexQueryStrategy}}{{/complexQueryStrategy}}
+{{/dataLayer}}
+
 {{#codeStyle}}
+# Code Conventions
 {{#namingConvention}}
 # - Classes: {{className}}
 # - Methods: {{methodName}}
 # - Variables: {{variableName}}
 {{/namingConvention}}
+{{#packageStructure}}# - Package: {{packageStructure}}{{/packageStructure}}
 {{/codeStyle}}
 
 {{#testing}}
-# Testing: {{#testFramework}}{{.}} {{/testFramework}}
-# Test naming: {{testNaming}}
+# Testing
+{{#testFramework}}# - Framework: {{.}}
+{{/testFramework}}
+# - Naming: {{testNaming}}
 {{/testing}}
+
+{{#git}}
+# Git
+{{#commitConvention}}# - Commit: {{commitConvention}}{{/commitConvention}}
+{{#commitLanguage}}# - Language: {{commitLanguage}}{{/commitLanguage}}
+{{/git}}
+
+{{#aiTool}}
+# Response language: {{responseLanguage}}
+{{#responseStyle}}# Style: {{responseStyle}}{{/responseStyle}}
+{{/aiTool}}

@@ -6,7 +6,7 @@
       "description": "Spring Boot 입문자를 위한 기본 설정",
       "icon": "🌱",
       "color": "from-green-400 to-green-600",
-      "categories": ["project", "architecture", "aiTool", "dataLayer", "testing"],
+      "categories": ["project", "architecture", "aiTool", "dataLayer", "codeStyle", "testing"],
       "values": {
         "project": {
           "projectType": "backend",
@@ -27,6 +27,20 @@
           "complexQueryStrategy": "jpql",
           "repositoryStrategy": "spring-data-only",
           "transactionStrategy": "service-layer"
+        },
+        "codeStyle": {
+          "namingConvention": {
+            "className": "PascalCase",
+            "methodName": "camelCase",
+            "variableName": "camelCase",
+            "constantName": "UPPER_SNAKE_CASE"
+          },
+          "packageStructure": "by-layer",
+          "errorHandling": {
+            "exceptionStrategy": "standard-exceptions",
+            "responseFormat": "custom-format"
+          },
+          "nullHandling": "optional"
         },
         "testing": {
           "testFramework": ["junit5"],
@@ -71,7 +85,17 @@
           "transactionStrategy": "service-layer"
         },
         "codeStyle": {
+          "namingConvention": {
+            "className": "PascalCase",
+            "methodName": "camelCase",
+            "variableName": "camelCase",
+            "constantName": "UPPER_SNAKE_CASE"
+          },
           "packageStructure": "by-feature",
+          "errorHandling": {
+            "exceptionStrategy": "custom-hierarchy",
+            "responseFormat": "problem-detail"
+          },
           "nullHandling": "optional"
         },
         "testing": {
@@ -83,6 +107,7 @@
         },
         "git": {
           "branchStrategy": "github-flow",
+          "branchNaming": "feature/JIRA-123-description",
           "commitConvention": "conventional-commits",
           "commitLanguage": "korean",
           "mergeStrategy": "squash"
@@ -124,7 +149,17 @@
           "transactionStrategy": "usecase-layer"
         },
         "codeStyle": {
+          "namingConvention": {
+            "className": "PascalCase",
+            "methodName": "camelCase",
+            "variableName": "camelCase",
+            "constantName": "UPPER_SNAKE_CASE"
+          },
           "packageStructure": "by-domain",
+          "errorHandling": {
+            "exceptionStrategy": "custom-hierarchy",
+            "responseFormat": "problem-detail"
+          },
           "nullHandling": "optional"
         },
         "testing": {
@@ -136,6 +171,7 @@
         },
         "git": {
           "branchStrategy": "git-flow",
+          "branchNaming": "feature/JIRA-123-description",
           "commitConvention": "conventional-commits",
           "commitLanguage": "korean",
           "mergeStrategy": "squash"
@@ -167,6 +203,12 @@
           "apiStyle": ["rest"]
         },
         "codeStyle": {
+          "namingConvention": {
+            "className": "PascalCase",
+            "methodName": "camelCase",
+            "variableName": "camelCase",
+            "constantName": "UPPER_SNAKE_CASE"
+          },
           "packageStructure": "by-feature",
           "nullHandling": "optional"
         },
@@ -177,6 +219,7 @@
         },
         "git": {
           "branchStrategy": "github-flow",
+          "branchNaming": "feature/issue-description",
           "commitConvention": "conventional-commits",
           "commitLanguage": "korean"
         },
@@ -193,7 +236,7 @@
       "description": "Kotlin 기반 Spring Boot 프로젝트",
       "icon": "🎨",
       "color": "from-orange-400 to-pink-500",
-      "categories": ["project", "architecture", "aiTool", "dataLayer", "testing"],
+      "categories": ["project", "architecture", "aiTool", "dataLayer", "codeStyle", "testing"],
       "values": {
         "project": {
           "projectType": "backend",
@@ -213,6 +256,20 @@
           "complexQueryStrategy": "querydsl",
           "repositoryStrategy": "custom-impl",
           "transactionStrategy": "service-layer"
+        },
+        "codeStyle": {
+          "namingConvention": {
+            "className": "PascalCase",
+            "methodName": "camelCase",
+            "variableName": "camelCase",
+            "constantName": "UPPER_SNAKE_CASE"
+          },
+          "packageStructure": "by-feature",
+          "errorHandling": {
+            "exceptionStrategy": "custom-hierarchy",
+            "responseFormat": "problem-detail"
+          },
+          "nullHandling": "kotlin-nullability"
         },
         "testing": {
           "testFramework": ["junit5", "kotest"],

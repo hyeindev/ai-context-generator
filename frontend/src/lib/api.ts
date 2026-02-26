@@ -50,6 +50,7 @@ export async function fetchPresets(): Promise<PresetsData> {
  * 컨텍스트 파일 생성
  */
 export async function generateContext(request: GenerateRequest): Promise<GenerateResponse> {
+  console.log("[API] Generate Request:", JSON.stringify(request, null, 2));
   const response = await fetch(`${API_BASE}/generate`, {
     method: "POST",
     headers: {
@@ -60,5 +61,7 @@ export async function generateContext(request: GenerateRequest): Promise<Generat
   if (!response.ok) {
     throw new Error("생성 실패");
   }
-  return response.json();
+  const result = await response.json();
+  console.log("[API] Generate Response:", result);
+  return result;
 }

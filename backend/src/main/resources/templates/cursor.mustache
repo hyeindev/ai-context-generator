@@ -1,42 +1,70 @@
+# Project Context
+
 {{#project}}
-# Project: {{framework}} ({{language}})
+## Project
+- Type: {{projectType}}
+- Language: {{language}}{{#javaVersion}} ({{javaVersion}}){{/javaVersion}}
+- Framework: {{framework}}
+- Build: {{buildTool}}
 {{/project}}
 
 {{#architecture}}
-## Architecture: {{architecturePattern}}
+## Architecture
+- Pattern: {{architecturePattern}}
+- Module: {{moduleStructure}}
+{{#apiStyle}}- API: {{.}} {{/apiStyle}}
+{{#dtoStrategy}}- DTO: {{dtoStrategy}}{{/dtoStrategy}}
 {{/architecture}}
+
+{{#dataLayer}}
+## Data Layer
+- DB: {{#database}}{{.}} {{/database}}
+- ORM: {{orm}}
+{{#complexQueryStrategy}}- Query Strategy: {{complexQueryStrategy}}{{/complexQueryStrategy}}
+{{#useQueryDsl}}
+- QueryDSL 의존성:
+  ```groovy
+  implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
+  annotationProcessor 'com.querydsl:querydsl-apt:5.0.0:jakarta'
+  ```
+{{/useQueryDsl}}
+{{#repositoryStrategy}}- Repository: {{repositoryStrategy}}{{/repositoryStrategy}}
+{{/dataLayer}}
 
 {{#codeStyle}}
 ## Code Style
 {{#namingConvention}}
-- Use {{className}} for classes
-- Use {{methodName}} for methods
-- Use {{variableName}} for variables
+- Class: {{className}}
+- Method: {{methodName}}
+- Variable: {{variableName}}
 {{/namingConvention}}
-- Package structure: {{packageStructure}}
+{{#packageStructure}}- Package: {{packageStructure}}{{/packageStructure}}
+{{#nullHandling}}- Null: {{nullHandling}}{{/nullHandling}}
 {{/codeStyle}}
 
 {{#testing}}
 ## Testing
-- Framework: {{#testFramework}}{{.}} {{/testFramework}}
+{{#testFramework}}- {{.}}
+{{/testFramework}}
+{{#mockFramework}}- Mock: {{mockFramework}}{{/mockFramework}}
 - Naming: {{testNaming}}
 {{/testing}}
 
 {{#git}}
 ## Git
-- Commit style: {{commitConvention}}
-- Language: {{commitLanguage}}
+{{#commitConvention}}- Commit: {{commitConvention}}{{/commitConvention}}
+{{#commitLanguage}}- Language: {{commitLanguage}}{{/commitLanguage}}
+{{#branchStrategy}}- Branch: {{branchStrategy}}{{/branchStrategy}}
 {{/git}}
 
 {{#aiTool}}
 ## Instructions
-- Response language: {{responseLanguage}}
+- Language: {{responseLanguage}}
 {{#responseStyle}}- Style: {{responseStyle}}{{/responseStyle}}
 
 {{#restrictions}}
+{{#-first}}
 ### DO NOT:
-{{#restrictions}}
-- {{.}}
-{{/restrictions}}
+{{/-first}}- {{.}}
 {{/restrictions}}
 {{/aiTool}}
