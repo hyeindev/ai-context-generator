@@ -17,7 +17,8 @@ const STEPS = [
   { id: 5, title: "코드 스타일", description: "코딩 컨벤션을 설정하세요" },
   { id: 6, title: "테스트", description: "테스트 전략을 설정하세요" },
   { id: 7, title: "Git", description: "Git 워크플로우를 설정하세요" },
-  { id: 8, title: "결과 확인", description: "생성된 파일을 확인하세요" },
+  { id: 8, title: "AI 응답 설정", description: "AI 응답 스타일을 설정하세요" },
+  { id: 9, title: "결과 확인", description: "생성된 파일을 확인하세요" },
 ];
 
 export default function Home() {
@@ -57,7 +58,7 @@ export default function Home() {
         aiTool: { ...selections.aiTool, targetTools: selectedTools },
       });
       setGeneratedFiles(result.files);
-      setCurrentStep(8);
+      setCurrentStep(9);
     } catch (error) {
       console.error("생성 실패:", error);
     } finally {
@@ -82,7 +83,7 @@ export default function Home() {
   };
 
   const getOptionForStep = (step: number): OptionData | undefined => {
-    const optionIds = ["", "", "project", "architecture", "dataLayer", "codeStyle", "testing", "git"];
+    const optionIds = ["", "", "project", "architecture", "dataLayer", "codeStyle", "testing", "git", "aiTool"];
     return options.find((o) => o.id === optionIds[step]);
   };
 
@@ -122,8 +123,8 @@ export default function Home() {
             />
           )}
 
-          {/* Step 2-7: 옵션 선택 */}
-          {currentStep >= 2 && currentStep <= 7 && (
+          {/* Step 2-8: 옵션 선택 */}
+          {currentStep >= 2 && currentStep <= 8 && (
             <OptionCard
               option={getOptionForStep(currentStep)}
               selections={selections[getOptionForStep(currentStep)?.id || ""] || {}}
@@ -133,8 +134,8 @@ export default function Home() {
             />
           )}
 
-          {/* Step 8: 결과 확인 */}
-          {currentStep === 8 && (
+          {/* Step 9: 결과 확인 */}
+          {currentStep === 9 && (
             <PreviewPanel
               files={generatedFiles}
               onCopy={handleCopy}
@@ -155,7 +156,7 @@ export default function Home() {
             이전
           </button>
 
-          {currentStep < 7 ? (
+          {currentStep < 8 ? (
             <button
               onClick={() => setCurrentStep((s) => s + 1)}
               disabled={!canProceed()}
@@ -164,7 +165,7 @@ export default function Home() {
               다음
               <ChevronRight className="w-5 h-5" />
             </button>
-          ) : currentStep === 7 ? (
+          ) : currentStep === 8 ? (
             <button
               onClick={handleGenerate}
               disabled={isLoading}
