@@ -4,7 +4,7 @@
       "id": "spring-boot-basic",
       "name": "Spring Boot 기본",
       "description": "Spring Boot 입문자를 위한 기본 설정",
-      "icon": "🌱",
+      "icon": "Leaf",
       "color": "from-green-400 to-green-600",
       "categories": ["project", "architecture", "aiTool", "dataLayer", "codeStyle", "testing"],
       "values": {
@@ -59,7 +59,7 @@
       "id": "spring-jpa-standard",
       "name": "Spring + JPA 표준",
       "description": "실무에서 많이 쓰는 JPA 프로젝트 표준 설정",
-      "icon": "⚡",
+      "icon": "Zap",
       "color": "from-blue-400 to-blue-600",
       "categories": ["project", "architecture", "aiTool", "dataLayer", "codeStyle", "testing", "git"],
       "values": {
@@ -123,7 +123,7 @@
       "id": "hexagonal-ddd",
       "name": "Hexagonal + DDD",
       "description": "도메인 중심 설계, 클린 아키텍처",
-      "icon": "🎯",
+      "icon": "Hexagon",
       "color": "from-purple-400 to-purple-600",
       "categories": ["project", "architecture", "aiTool", "dataLayer", "codeStyle", "testing", "git", "domain"],
       "values": {
@@ -187,7 +187,7 @@
       "id": "nextjs-fullstack",
       "name": "Next.js 풀스택",
       "description": "Next.js App Router 기반 풀스택",
-      "icon": "🚀",
+      "icon": "Rocket",
       "color": "from-gray-600 to-gray-800",
       "categories": ["project", "architecture", "aiTool", "codeStyle", "testing", "git"],
       "values": {
@@ -234,7 +234,7 @@
       "id": "kotlin-spring",
       "name": "Kotlin + Spring",
       "description": "Kotlin 기반 Spring Boot 프로젝트",
-      "icon": "🎨",
+      "icon": "Palette",
       "color": "from-orange-400 to-pink-500",
       "categories": ["project", "architecture", "aiTool", "dataLayer", "codeStyle", "testing"],
       "values": {
@@ -288,7 +288,7 @@
       "id": "custom",
       "name": "직접 설정",
       "description": "모든 옵션을 직접 선택",
-      "icon": "⚙️",
+      "icon": "Settings",
       "color": "from-gray-400 to-gray-500",
       "categories": [],
       "values": {}

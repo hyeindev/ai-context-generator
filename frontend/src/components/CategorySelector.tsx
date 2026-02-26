@@ -3,6 +3,7 @@
 import { Check } from "lucide-react";
 import clsx from "clsx";
 import { CategoryItem } from "@/types";
+import CategoryIcon from "./CategoryIcon";
 
 interface CategorySelectorProps {
   categories: CategoryItem[];
@@ -96,7 +97,9 @@ export default function CategorySelector({
               )}
 
               {/* 아이콘 */}
-              <div className="text-2xl mb-2 mt-2">{category.icon}</div>
+              <div className="mb-2 mt-2">
+                <CategoryIcon name={category.icon} />
+              </div>
 
               {/* 정보 */}
               <h3 className="font-medium text-gray-900">{category.title}</h3>

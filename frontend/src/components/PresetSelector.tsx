@@ -3,6 +3,7 @@
 import { Check } from "lucide-react";
 import clsx from "clsx";
 import { Preset } from "@/types";
+import CategoryIcon from "./CategoryIcon";
 
 interface PresetSelectorProps {
   presets: Preset[];
@@ -44,13 +45,13 @@ export default function PresetSelector({ presets, selectedPreset, onSelect }: Pr
               )}
 
               {/* 아이콘 */}
-              <div
-                className={clsx(
-                  "w-12 h-12 rounded-xl bg-gradient-to-br flex items-center justify-center text-2xl mb-4",
-                  preset.color
-                )}
-              >
-                {preset.icon}
+              <div className="mb-4">
+                <CategoryIcon
+                  name={preset.icon}
+                  size="lg"
+                  variant="gradient"
+                  gradientClass={preset.color}
+                />
               </div>
 
               {/* 정보 */}
