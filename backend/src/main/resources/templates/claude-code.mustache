@@ -21,9 +21,10 @@
 ## Data Layer
 - **Database**: {{#database}}{{.}} {{/database}}
 - **ORM**: {{orm}}
-{{#queryDsl}}
-- **QueryDSL**: Enabled
-  - 반드시 build.gradle에 QueryDSL 의존성 추가할 것:
+{{#complexQueryStrategy}}
+- **복잡한 쿼리 대응 방식**: {{complexQueryStrategy}}
+{{#complexQueryStrategy.querydsl}}
+  - 반드시 build.gradle에 QueryDSL 의존성 추가:
     ```groovy
     // QueryDSL
     implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
@@ -31,15 +32,15 @@
     annotationProcessor 'jakarta.annotation:jakarta.annotation-api'
     annotationProcessor 'jakarta.persistence:jakarta.persistence-api'
     ```
-  - CustomRepository 구현 시 JPAQueryFactory 사용할 것
-{{/queryDsl}}
+  - JPAQueryFactory를 사용하여 타입 안전한 쿼리 작성
+  - Q클래스 자동 생성 활용
+{{/complexQueryStrategy.querydsl}}
+{{/complexQueryStrategy}}
 {{#complexQueryThreshold}}
-- **복잡한 쿼리 기준**: {{complexQueryThreshold}}
-  - 이 조건을 만족하면 QueryDSL 또는 Native Query 사용할 것
-  - 3-joins: 3개 이상 테이블 JOIN 시
-  - dynamic-conditions: 동적 WHERE 조건 3개 이상
-  - subquery: 서브쿼리가 필요한 경우
-  - aggregation: GROUP BY, HAVING 등 집계 함수 사용 시
+- **복잡한 쿼리 기준** (아래 조건 시 위 방식 적용):
+{{#complexQueryThreshold}}  - {{.}}
+{{/complexQueryThreshold}}
+  - 위 기준에 해당하면 Spring Data JPA 메서드 쿼리 대신 선택한 복잡한 쿼리 대응 방식 사용할 것
 {{/complexQueryThreshold}}
 {{#repositoryStrategy}}- **Repository Strategy**: {{repositoryStrategy}}{{/repositoryStrategy}}
 {{#transactionStrategy}}- **Transaction Strategy**: {{transactionStrategy}}{{/transactionStrategy}}

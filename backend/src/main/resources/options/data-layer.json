@@ -55,16 +55,80 @@
       ]
     },
     {
-      "id": "queryDsl",
-      "label": "QueryDSL 사용",
-      "type": "boolean",
+      "id": "complexQueryStrategy",
+      "label": "복잡한 쿼리 대응 방식",
+      "type": "select",
       "required": false,
-      "default": false,
       "dependsOn": {
         "field": "orm",
         "showWhen": ["jpa"]
       },
-      "description": "타입 안전한 동적 쿼리 빌더"
+      "description": "JPA 기본 쿼리로 해결하기 어려운 복잡한 쿼리 처리 방식",
+      "values": [
+        {
+          "id": "querydsl",
+          "label": "QueryDSL",
+          "description": "타입 안전한 동적 쿼리 빌더, 컴파일 타임 오류 검출"
+        },
+        {
+          "id": "native-query",
+          "label": "Native Query",
+          "description": "@Query(nativeQuery=true)로 직접 SQL 작성"
+        },
+        {
+          "id": "jpql",
+          "label": "JPQL Only",
+          "description": "복잡한 쿼리도 JPQL로 해결"
+        },
+        {
+          "id": "querydsl-native-mixed",
+          "label": "QueryDSL + Native 혼용",
+          "description": "QueryDSL 기본, 극히 복잡한 경우 Native Query"
+        }
+      ]
+    },
+    {
+      "id": "complexQueryThreshold",
+      "label": "복잡한 쿼리 기준",
+      "type": "multiSelect",
+      "required": false,
+      "dependsOn": {
+        "field": "orm",
+        "showWhen": ["jpa"]
+      },
+      "description": "아래 조건에 해당하면 위에서 선택한 복잡한 쿼리 대응 방식 사용",
+      "values": [
+        {
+          "id": "3-joins",
+          "label": "JOIN 3개 이상",
+          "description": "3개 이상 테이블 조인 시"
+        },
+        {
+          "id": "dynamic-conditions",
+          "label": "동적 조건 3개 이상",
+          "description": "WHERE 조건이 동적으로 3개 이상 변할 때"
+        },
+        {
+          "id": "subquery",
+          "label": "서브쿼리 필요",
+          "description": "서브쿼리가 필요한 경우"
+        },
+        {
+          "id": "aggregation",
+          "label": "집계 함수 사용",
+          "description": "GROUP BY, HAVING, SUM, COUNT 등"
+        },
+        {
+          "id": "complex-sorting",
+          "label": "복잡한 정렬",
+          "description": "다중 컬럼 동적 정렬, CASE WHEN 정렬"
+        },
+        {
+          "id": "bulk-operation",
+          "label": "대량 데이터 처리",
+          "description": "배치 INSERT/UPDATE/DELETE"
+        }
+      ]
     },
     {
       "id": "repositoryStrategy",
@@ -90,35 +154,6 @@
           "id": "querydsl-support",
           "label": "QueryDSL Support",
           "description": "QuerydslRepositorySupport 상속"
-        }
-      ]
-    },
-    {
-      "id": "complexQueryThreshold",
-      "label": "복잡한 쿼리 기준",
-      "type": "select",
-      "required": false,
-      "description": "이 조건을 넘으면 네이티브 쿼리나 별도 전략 사용",
-      "values": [
-        {
-          "id": "3-joins",
-          "label": "3개 이상 JOIN",
-          "description": "3개 이상 테이블 조인 시"
-        },
-        {
-          "id": "dynamic-conditions",
-          "label": "동적 조건 3개+",
-          "description": "동적 WHERE 조건 3개 이상"
-        },
-        {
-          "id": "subquery",
-          "label": "서브쿼리 포함",
-          "description": "서브쿼리가 필요한 경우"
-        },
-        {
-          "id": "aggregation",
-          "label": "집계 함수 사용",
-          "description": "GROUP BY, HAVING 등"
         }
       ]
     },
