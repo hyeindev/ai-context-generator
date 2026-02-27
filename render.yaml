@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: ai-context-generator-api
+    env: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    plan: free
+    envVars:
+      - key: CORS_ALLOWED_ORIGINS
+        value: https://ai-context-generator.vercel.app
+      - key: LOG_LEVEL
+        value: INFO

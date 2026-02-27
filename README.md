@@ -109,6 +109,45 @@ ai-context-generator/
 └── README.md
 ```
 
+## 배포
+
+### Backend - Render
+
+1. [render.com](https://render.com) 가입
+2. New → Web Service → GitHub 저장소 연결
+3. 설정:
+   - **Root Directory**: `backend`
+   - **Environment**: `Docker`
+   - **Instance Type**: Free
+
+**환경변수:**
+```
+CORS_ALLOWED_ORIGINS=https://your-app.vercel.app
+LOG_LEVEL=INFO
+```
+
+### Frontend - Vercel
+
+1. [vercel.com](https://vercel.com) 가입
+2. New Project → GitHub 저장소 연결
+3. 설정:
+   - **Root Directory**: `frontend`
+   - **Framework Preset**: Next.js
+
+**환경변수:**
+```
+NEXT_PUBLIC_API_URL=https://your-api.onrender.com/api
+```
+
+## API 엔드포인트
+
+| Method | Endpoint | 설명 |
+|--------|----------|------|
+| GET | `/api/options` | 전체 옵션 목록 조회 |
+| GET | `/api/options/{id}` | 개별 옵션 조회 |
+| GET | `/api/options/categories` | 카테고리 정보 조회 |
+| GET | `/api/options/presets` | 프리셋 목록 조회 |
+| POST | `/api/generate` | 컨텍스트 파일 생성 |
 
 ## 라이선스
 
