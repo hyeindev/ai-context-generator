@@ -1,8 +1,14 @@
 # AI Context Generator
 
+**https://ai-context-generator.vercel.app**
+
+
+
 AI 코딩 도구를 위한 프로젝트 컨텍스트 파일 생성기입니다.
 
 프로젝트의 기술 스택, 아키텍처, 코딩 컨벤션을 설정하면 각 AI 도구에 맞는 컨텍스트 파일을 자동으로 생성합니다.
+
+
 
 ## 지원 AI 도구
 
@@ -107,36 +113,6 @@ ai-context-generator/
 │       ├── lib/                   # API 클라이언트
 │       └── types/                 # TypeScript 타입
 └── README.md
-```
-
-## 배포
-
-### Backend - Render
-
-1. [render.com](https://render.com) 가입
-2. New → Web Service → GitHub 저장소 연결
-3. 설정:
-   - **Root Directory**: `backend`
-   - **Environment**: `Docker`
-   - **Instance Type**: Free
-
-**환경변수:**
-```
-CORS_ALLOWED_ORIGINS=https://your-app.vercel.app
-LOG_LEVEL=INFO
-```
-
-### Frontend - Vercel
-
-1. [vercel.com](https://vercel.com) 가입
-2. New Project → GitHub 저장소 연결
-3. 설정:
-   - **Root Directory**: `frontend`
-   - **Framework Preset**: Next.js
-
-**환경변수:**
-```
-NEXT_PUBLIC_API_URL=https://your-api.onrender.com/api
 ```
 
 ## API 엔드포인트
